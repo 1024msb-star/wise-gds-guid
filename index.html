@@ -14,7 +14,7 @@
   --green:#3B6D11;--green-bg:#EAF3DE;--green-dark:#27500A;
   --danger:#E24B4A;--danger-bg:#FCEBEB;
   --warn:#BA7517;--warn-bg:#FEF6E4;
-  --purple:#534AB7;
+  --purple:#534AB7;--purple-bg:#EEEDFE;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);}
@@ -31,6 +31,7 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 .page-desc{font-size:13px;color:var(--text-sec);margin-bottom:24px;line-height:1.65;}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .good{color:#3B6D11;font-weight:500;}.bad{color:#A32D2D;font-weight:500;}
 @keyframes flowhi{to{stroke-dashoffset:-28;}}
 @keyframes flowlo{to{stroke-dashoffset:-22;}}
@@ -44,20 +45,14 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 .tab-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
 .tab-btn{cursor:pointer;padding:7px 14px;border:1px solid var(--border-strong);border-radius:6px;background:transparent;font-size:12px;color:var(--text-sec);}
 .tab-btn.on{background:var(--text);color:#fff;border-color:var(--text);}
-.ratio-bar{height:12px;border-radius:6px;margin:6px 0;}
-.spec-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
-.spec-row:last-child{border-bottom:none;}
-.spec-label{font-size:13px;font-weight:500;min-width:120px;}
-.spec-bar-wrap{flex:1;}
-.spec-note{font-size:12px;color:var(--text-sec);min-width:150px;text-align:right;}
-.verdict{border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.7;margin-top:8px;}
 .cmp-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;}
 .cmp-table th{padding:10px 14px;background:var(--surface2);font-weight:500;border-bottom:1px solid var(--border);text-align:left;}
 .cmp-table td{padding:10px 14px;border-bottom:1px solid var(--border);}
 .cmp-table tr:last-child td{border-bottom:none;}
 .spec-badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;margin:2px 2px 2px 0;}
+.verdict{border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.7;margin-top:8px;}
 @media(max-width:600px){
-  .page{padding:18px 14px;}.two-col{grid-template-columns:1fr;}
+  .page{padding:18px 14px;}.two-col,.three-col{grid-template-columns:1fr;}
   .nav-btn{padding:12px 12px;font-size:12px;}.site-header{padding:12px 14px;}
 }
 </style>
@@ -67,30 +62,27 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 <header class="site-header">
   <div>
     <div class="logo">Wise<span>Control</span> Inc.</div>
-    <div class="sub">P810 UHP Pressure Gauge &nbsp;|&nbsp; P840 UHP Pressure Switch (Analog Indicator) &nbsp;— GDS 교육 자료</div>
+    <div class="sub">P810 Gauge &nbsp;|&nbsp; P840 Switch &nbsp;|&nbsp; UPT863 Transmitter &nbsp;— GDS 풀 라인업 교육 자료</div>
   </div>
   <div style="font-size:11px;color:#888780;text-align:right;">Overseas Sales Dept.<br>California Distributor Stock Proposal</div>
 </header>
 
 <nav class="nav">
   <button class="nav-btn active" onclick="showPage('p1',this)">01&nbsp; GDS 압력 흐름</button>
-  <button class="nav-btn" onclick="showPage('p2',this)">02&nbsp; Gauge vs Switch</button>
+  <button class="nav-btn" onclick="showPage('p2',this)">02&nbsp; 3가지 설치 패턴</button>
   <button class="nav-btn" onclick="showPage('p3',this)">03&nbsp; 재고 구성 근거</button>
   <button class="nav-btn" onclick="showPage('p4',this)">04&nbsp; 제품 스펙 &amp; 오더 코드</button>
 </nav>
 
-<!-- ════════ PAGE 1 ════════ -->
+<!-- ════════ PAGE 1 — Gas Cabinet → VMB/VMP → Process Tool 흐름도 ════════ -->
 <section class="page active" id="p1">
   <div class="section-title">Gas Delivery System</div>
-  <h1 class="page-heading">GDS 압력 흐름 — Primary/Reserve 듀얼 실린더 구성</h1>
-  <p class="page-desc">Primary·Reserve 실린더 각각에 G1 Gauge가 직결되고, S1 Switch는 두 라인이 합류한 지점에 공통으로 1개 설치됩니다. 각 장비를 클릭하면 상세 설명이 표시됩니다.</p>
+  <h1 class="page-heading">GDS 압력 흐름 — Gas Cabinet → VMB/VMP → Process Tool</h1>
+  <p class="page-desc">Primary·Reserve 듀얼 실린더에서 출발해 감압 후 VMB/VMP로 분배됩니다. VMB/VMP 헤더 위에 G2·T2·S2가 공통 1세트로 설치되고, 각 Stick에도 동일하게 반복 설치됩니다. 각 장비를 클릭하면 상세 설명이 표시됩니다.</p>
 
-  <div class="card" style="padding:16px 12px;">
-    <svg width="100%" viewBox="0 0 860 480" style="display:block;">
+  <div class="card" style="padding:20px 16px;">
+    <svg width="100%" viewBox="0 0 960 720" style="display:block;">
       <defs>
-        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-          <path d="M1 1L9 5L1 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
         <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
           <path d="M1 1L9 5L1 9" fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </marker>
@@ -100,331 +92,384 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
         </linearGradient>
       </defs>
 
-      <rect x="44" y="16" width="772" height="8" rx="4" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
-      <rect x="44" y="16" width="772" height="8" rx="4" fill="url(#pbar)" opacity="0.5"/>
-      <text style="font-size:11px;font-weight:500;fill:#712B13;" x="44" y="12">고압 ~3,000 psi</text>
-      <text style="font-size:11px;font-weight:500;fill:#0C447C;" x="816" y="12" text-anchor="end">저압 20~160 psi</text>
-      <line x1="30" y1="380" x2="832" y2="380" stroke="#D3D1C7" stroke-width="0.8" stroke-dasharray="3 3"/>
+      <!-- 압력 그라데이션 바 -->
+      <rect x="30" y="14" width="900" height="8" rx="4" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+      <rect x="30" y="14" width="900" height="8" rx="4" fill="url(#pbar)" opacity="0.5"/>
+      <text style="font-size:11px;font-weight:500;fill:#712B13;" x="30" y="10">고압 ~3,000 psi</text>
+      <text style="font-size:11px;font-weight:500;fill:#0C447C;" x="930" y="10" text-anchor="end">저압 20~150 psi</text>
 
       <!-- ══ GAS CABINET ══ -->
       <g class="eq-item" onclick="showInfo('p1','cab')">
-        <rect x="34" y="46" width="320" height="320" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="2"/>
-        <text style="font-size:13px;font-weight:500;fill:#27500A;" x="194" y="66" text-anchor="middle">Gas Cabinet</text>
-        <text style="font-size:10px;fill:#3B6D11;" x="194" y="80" text-anchor="middle">SEMI S2 / NFPA 318 — Primary/Reserve 자동전환</text>
-        <rect x="44" y="88" width="300" height="266" rx="5" fill="none" stroke="#3B6D11" stroke-width="0.7" stroke-dasharray="4 3"/>
+        <rect x="28" y="34" width="296" height="430" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="2"/>
+        <text style="font-size:13px;font-weight:500;fill:#27500A;" x="176" y="54" text-anchor="middle">Gas Cabinet</text>
+        <text style="font-size:9px;fill:#3B6D11;" x="176" y="68" text-anchor="middle">SEMI S2 / NFPA 318 — Primary/Reserve 자동전환</text>
+        <rect x="38" y="78" width="276" height="374" rx="5" fill="none" stroke="#3B6D11" stroke-width="0.7" stroke-dasharray="4 3"/>
       </g>
 
-      <!-- ══ PRIMARY 실린더 ══ -->
+      <!-- Primary 실린더 -->
       <g class="eq-item" onclick="showInfo('p1','cylP')">
-        <rect x="52" y="116" width="54" height="148" rx="9" fill="#D3D1C7" stroke="#888780" stroke-width="1.2"/>
-        <ellipse cx="79" cy="116" rx="27" ry="10" fill="#B4B2A9" stroke="#888780" stroke-width="1"/>
-        <rect x="68" y="94" width="22" height="22" rx="3" fill="#5F5E5A" stroke="#444441" stroke-width="0.8"/>
-        <rect x="57" y="98" width="44" height="5" rx="2.5" fill="#444441"/>
-        <text style="font-size:10px;font-weight:600;fill:#2C2C2A;" x="79" y="198" text-anchor="middle">Primary</text>
-        <rect x="48" y="208" width="62" height="18" rx="4" fill="#FAECE7" stroke="#D85A30" stroke-width="0.8"/>
-        <text style="font-size:9px;font-weight:500;fill:#712B13;" x="79" y="220" text-anchor="middle">~3,000 psi</text>
+        <rect x="48" y="108" width="52" height="144" rx="9" fill="#D3D1C7" stroke="#888780" stroke-width="1.2"/>
+        <ellipse cx="74" cy="108" rx="26" ry="9" fill="#B4B2A9" stroke="#888780" stroke-width="1"/>
+        <rect x="62" y="88" width="22" height="20" rx="3" fill="#5F5E5A" stroke="#444441" stroke-width="0.8"/>
+        <text style="font-size:9px;font-weight:600;fill:#2C2C2A;" x="74" y="182" text-anchor="middle">Primary</text>
+        <rect x="44" y="192" width="60" height="16" rx="3" fill="#FAECE7" stroke="#D85A30" stroke-width="0.7"/>
+        <text style="font-size:8px;font-weight:500;fill:#712B13;" x="74" y="203" text-anchor="middle">~3,000 psi</text>
       </g>
-
       <!-- Primary Pigtail + G1a -->
-      <line class="flow-hi" x1="92" y1="98" x2="92" y2="70" stroke="#D85A30" stroke-width="3.5" stroke-linecap="round"/>
-      <text style="font-size:8px;fill:var(--text-muted);" x="92" y="60" text-anchor="middle">Pigtail</text>
-      <!-- G1a gauge on Primary pigtail -->
+      <line class="flow-hi" x1="96" y1="98" x2="128" y2="98" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
+      <line class="flow-hi" x1="128" y1="98" x2="128" y2="64" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
       <g class="eq-item" onclick="showInfo('p1','g1a')">
-        <circle cx="92" cy="44" r="15" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.5"/>
-        <circle cx="92" cy="44" r="11" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
-        <line x1="92" y1="44" x2="98" y2="37" stroke="#D85A30" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="92" cy="44" r="2" fill="#D85A30"/>
-        <rect x="78" y="28" width="16" height="12" rx="6" fill="#D85A30"/>
-        <text style="font-size:8px;font-weight:500;fill:#fff;" x="86" y="37" text-anchor="middle">G1a</text>
+        <circle cx="128" cy="50" r="12" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.4"/>
+        <line x1="128" y1="50" x2="133" y2="44" stroke="#D85A30" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="128" cy="50" r="1.8" fill="#D85A30"/>
+        <text style="font-size:8px;font-weight:600;fill:#712B13;" x="145" y="46">G1a · P810</text>
       </g>
 
-      <!-- ══ RESERVE 실린더 ══ -->
+      <!-- Reserve 실린더 -->
       <g class="eq-item" onclick="showInfo('p1','cylR')">
-        <rect x="130" y="116" width="54" height="148" rx="9" fill="#D3D1C7" stroke="#888780" stroke-width="1.2"/>
-        <ellipse cx="157" cy="116" rx="27" ry="10" fill="#B4B2A9" stroke="#888780" stroke-width="1"/>
-        <rect x="146" y="94" width="22" height="22" rx="3" fill="#5F5E5A" stroke="#444441" stroke-width="0.8"/>
-        <rect x="135" y="98" width="44" height="5" rx="2.5" fill="#444441"/>
-        <text style="font-size:10px;font-weight:600;fill:#2C2C2A;" x="157" y="198" text-anchor="middle">Reserve</text>
-        <rect x="126" y="208" width="62" height="18" rx="4" fill="#FAECE7" stroke="#D85A30" stroke-width="0.8"/>
-        <text style="font-size:9px;font-weight:500;fill:#712B13;" x="157" y="220" text-anchor="middle">~3,000 psi</text>
+        <rect x="116" y="108" width="52" height="144" rx="9" fill="#D3D1C7" stroke="#888780" stroke-width="1.2"/>
+        <ellipse cx="142" cy="108" rx="26" ry="9" fill="#B4B2A9" stroke="#888780" stroke-width="1"/>
+        <rect x="130" y="88" width="22" height="20" rx="3" fill="#5F5E5A" stroke="#444441" stroke-width="0.8"/>
+        <text style="font-size:9px;font-weight:600;fill:#2C2C2A;" x="142" y="182" text-anchor="middle">Reserve</text>
+        <rect x="112" y="192" width="60" height="16" rx="3" fill="#FAECE7" stroke="#D85A30" stroke-width="0.7"/>
+        <text style="font-size:8px;font-weight:500;fill:#712B13;" x="142" y="203" text-anchor="middle">~3,000 psi</text>
       </g>
-
       <!-- Reserve Pigtail + G1b -->
-      <line class="flow-hi" x1="170" y1="98" x2="170" y2="70" stroke="#D85A30" stroke-width="3.5" stroke-linecap="round"/>
-      <text style="font-size:8px;fill:var(--text-muted);" x="170" y="60" text-anchor="middle">Pigtail</text>
+      <line class="flow-hi" x1="168" y1="98" x2="200" y2="98" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
+      <line class="flow-hi" x1="200" y1="98" x2="200" y2="64" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
       <g class="eq-item" onclick="showInfo('p1','g1b')">
-        <circle cx="170" cy="44" r="15" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.5"/>
-        <circle cx="170" cy="44" r="11" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
-        <line x1="170" y1="44" x2="176" y2="37" stroke="#D85A30" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="170" cy="44" r="2" fill="#D85A30"/>
-        <rect x="156" y="28" width="16" height="12" rx="6" fill="#D85A30"/>
-        <text style="font-size:8px;font-weight:500;fill:#fff;" x="164" y="37" text-anchor="middle">G1b</text>
+        <circle cx="200" cy="50" r="12" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.4"/>
+        <line x1="200" y1="50" x2="205" y2="44" stroke="#D85A30" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="200" cy="50" r="1.8" fill="#D85A30"/>
+        <text style="font-size:8px;font-weight:600;fill:#712B13;" x="216" y="46">G1b · P810</text>
       </g>
 
-      <!-- 두 라인이 Changeover Manifold로 합류 -->
-      <line x1="92" y1="70" x2="92" y2="88" stroke="#D85A30" stroke-width="3.5" stroke-linecap="round"/>
-      <line x1="170" y1="70" x2="170" y2="88" stroke="#D85A30" stroke-width="3.5" stroke-linecap="round"/>
-
+      <!-- Changeover Manifold -->
+      <line x1="128" y1="98" x2="128" y2="252" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
+      <line x1="200" y1="98" x2="200" y2="252" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
       <g class="eq-item" onclick="showInfo('p1','changeover')">
-        <rect x="78" y="88" width="106" height="26" rx="5" fill="#FAECE7" stroke="#D85A30" stroke-width="1"/>
-        <text style="font-size:9px;font-weight:500;fill:#712B13;" x="131" y="105" text-anchor="middle">Changeover Manifold</text>
+        <rect x="108" y="252" width="112" height="24" rx="5" fill="#FAECE7" stroke="#D85A30" stroke-width="1"/>
+        <text style="font-size:8px;font-weight:500;fill:#712B13;" x="164" y="268" text-anchor="middle">Changeover Manifold</text>
+      </g>
+      <line class="flow-hi" x1="164" y1="276" x2="164" y2="304" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
+      <line class="flow-hi" x1="164" y1="304" x2="218" y2="304" stroke="#D85A30" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- T1 Cabinet (원통형) -->
+      <g class="eq-item" onclick="showInfo('p1','t1')">
+        <rect x="174" y="290" width="16" height="28" rx="8" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.4"/>
+        <rect x="177" y="280" width="10" height="12" rx="3" fill="#5F5E5A" stroke="#444441" stroke-width="0.5"/>
+        <line x1="182" y1="280" x2="182" y2="272" stroke="#D85A30" stroke-width="1.2" stroke-dasharray="2 2"/>
+        <circle cx="182" cy="302" r="3.5" fill="#D3D1C7" stroke="#888780" stroke-width="0.6"/>
+        <rect x="177" y="316" width="10" height="6" rx="1.5" fill="#888780"/>
+        <text style="font-size:7px;font-weight:600;fill:#712B13;" x="182" y="335" text-anchor="middle">T1</text>
       </g>
 
-      <!-- 합류 후 공통 배관 -->
-      <line class="flow-hi" x1="131" y1="114" x2="131" y2="150" stroke="#D85A30" stroke-width="4" stroke-linecap="round"/>
-      <line class="flow-hi" x1="131" y1="150" x2="220" y2="150" stroke="#D85A30" stroke-width="4" stroke-linecap="round"/>
-
-      <!-- S1: 공통 배관 합류 지점에 1개만 설치 -->
+      <!-- S1 Cabinet -->
       <g class="eq-item" onclick="showInfo('p1','s1')">
-        <circle cx="180" cy="150" r="19" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.5"/>
-        <circle cx="180" cy="150" r="14" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
-        <line x1="180" y1="150" x2="188" y2="141" stroke="#D85A30" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="180" cy="150" r="2.3" fill="#D85A30"/>
-        <!-- SET 포인터 -->
-        <polygon points="190,160 194,153 198,160" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.5"/>
-        <!-- 전선 -->
-        <line x1="190" y1="132" x2="190" y2="124" stroke="#D85A30" stroke-width="1.2" stroke-dasharray="2 2"/>
-        <text style="font-size:7px;fill:#993C1D;" x="198" y="124">신호</text>
-        <rect x="160" y="174" width="16" height="13" rx="6" fill="#D85A30"/>
-        <text style="font-size:8px;font-weight:500;fill:#fff;" x="168" y="183" text-anchor="middle">S1</text>
-        <text style="font-size:7px;fill:#712B13;" x="180" y="195" text-anchor="middle">공통 1개</text>
-        <text style="font-size:8px;fill:#D85A30;" x="180" y="128" text-anchor="middle">P840</text>
+        <circle cx="218" cy="277" r="13" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.4"/>
+        <line x1="218" y1="277" x2="223" y2="271" stroke="#D85A30" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="218" cy="277" r="1.8" fill="#D85A30"/>
+        <polygon points="224,284 227,279 230,284" fill="#E24B4A"/>
+        <line x1="218" y1="290" x2="218" y2="304" stroke="#D85A30" stroke-width="1" stroke-dasharray="2 2"/>
+        <text style="font-size:7.5px;font-weight:600;fill:#712B13;" x="218" y="312" text-anchor="middle">S1</text>
       </g>
-
-      <!-- 공통 배관 → Regulator -->
-      <line class="flow-hi" x1="199" y1="150" x2="232" y2="150" stroke="#D85A30" stroke-width="4" stroke-linecap="round"/>
 
       <!-- Regulator -->
       <g class="eq-item" onclick="showInfo('p1','reg')">
-        <rect x="232" y="138" width="76" height="24" rx="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
-        <text style="font-size:9px;font-weight:500;fill:#27500A;" x="270" y="153" text-anchor="middle">REGULATOR</text>
-        <text style="font-size:7px;fill:#3B6D11;" x="250" y="132">Inlet=고압</text>
-        <text style="font-size:7px;fill:#3B6D11;" x="290" y="132">Outlet=저압</text>
+        <rect x="220" y="292" width="72" height="22" rx="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+        <text style="font-size:8.5px;font-weight:500;fill:#27500A;" x="256" y="306" text-anchor="middle">REGULATOR</text>
+      </g>
+      <text style="font-size:7px;fill:#3B6D11;" x="232" y="286">Inlet=고압</text>
+      <text style="font-size:7px;fill:#3B6D11;" x="265" y="286">Outlet=저압</text>
+      <line class="flow-lo" x1="292" y1="303" x2="340" y2="303" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ahb)"/>
+
+      <rect x="36" y="386" width="278" height="18" rx="4" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+      <text style="font-size:8.5px;font-weight:500;fill:#27500A;" x="175" y="398" text-anchor="middle">Outlet: 20~150 psi 중 선택</text>
+
+      <!-- ══ VMB/VMP 통합 박스 ══ -->
+      <g class="eq-item" onclick="showInfo('p1','vmbvmp')">
+        <rect x="358" y="34" width="420" height="472" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="2"/>
+        <text style="font-size:13px;font-weight:500;fill:#0C447C;" x="568" y="54" text-anchor="middle">VMB / VMP</text>
+        <text style="font-size:9px;fill:#185FA5;" x="568" y="68" text-anchor="middle">Valve Manifold Box/Panel — 가스 분배 설비</text>
       </g>
 
-      <line class="flow-lo" x1="308" y1="150" x2="406" y2="150" stroke="#185FA5" stroke-width="4" stroke-linecap="round" marker-end="url(#ahb)"/>
-      <text style="font-size:8px;fill:var(--text-muted);" x="357" y="142" text-anchor="middle">저압 배관</text>
+      <!-- 헤더 공통 계기 라벨 -->
+      <rect x="452" y="78" width="232" height="18" rx="4" fill="none" stroke="#185FA5" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <text style="font-size:8px;fill:#0C447C;" x="568" y="91" text-anchor="middle">헤더 공통 계기 (1세트) — 헤더 배관 위 설치</text>
 
-      <rect x="44" y="326" width="300" height="22" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
-      <text style="font-size:11px;font-weight:500;fill:#27500A;" x="194" y="341" text-anchor="middle">Outlet Set point: 20~150 psi 중 선택 (예: 80 psi 고정)</text>
-
-      <!-- ══ VMB ══ -->
-      <g class="eq-item" onclick="showInfo('p1','vmb')">
-        <rect x="410" y="60" width="270" height="306" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="2"/>
-        <text style="font-size:13px;font-weight:500;fill:#0C447C;" x="545" y="80" text-anchor="middle">VMB / VMP 내부</text>
-        <text style="font-size:10px;fill:#185FA5;" x="545" y="94" text-anchor="middle">매니폴드 헤더 + 4 Stick</text>
-        <rect x="422" y="106" width="246" height="22" rx="5" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
-        <text style="font-size:10px;font-weight:500;fill:#0C447C;" x="545" y="121" text-anchor="middle">매니폴드 헤더</text>
-        <line class="flow-lo" x1="406" y1="117" x2="422" y2="117" stroke="#185FA5" stroke-width="4" stroke-linecap="round"/>
-        <line x1="458" y1="128" x2="458" y2="284" stroke="#185FA5" stroke-width="2.5"/>
-        <line x1="510" y1="128" x2="510" y2="284" stroke="#185FA5" stroke-width="2.5"/>
-        <line x1="562" y1="128" x2="562" y2="284" stroke="#185FA5" stroke-width="2.5"/>
-        <line x1="614" y1="128" x2="614" y2="284" stroke="#185FA5" stroke-width="2.5"/>
-        <rect x="450" y="204" width="16" height="12" rx="2" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
-        <rect x="502" y="204" width="16" height="12" rx="2" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
-        <rect x="554" y="204" width="16" height="12" rx="2" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
-        <rect x="606" y="204" width="16" height="12" rx="2" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
-        <line x1="458" y1="284" x2="458" y2="314" stroke="#185FA5" stroke-width="1.5" stroke-dasharray="3 2"/>
-        <line x1="510" y1="284" x2="510" y2="314" stroke="#185FA5" stroke-width="1.5" stroke-dasharray="3 2"/>
-        <line x1="562" y1="284" x2="562" y2="314" stroke="#185FA5" stroke-width="1.5" stroke-dasharray="3 2"/>
-        <line x1="614" y1="284" x2="614" y2="314" stroke="#185FA5" stroke-width="1.5" stroke-dasharray="3 2"/>
-        <rect x="422" y="314" width="246" height="20" rx="4" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
-        <text style="font-size:10px;font-weight:500;fill:#0C447C;" x="545" y="328" text-anchor="middle">각 Process Tool로</text>
-      </g>
-
-      <!-- G2 -->
+      <!-- 헤더 G2 — 헤더 배관 위 -->
       <g class="eq-item" onclick="showInfo('p1','g2')">
-        <circle cx="478" cy="162" r="19" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.5"/>
-        <circle cx="478" cy="162" r="14" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
-        <line x1="478" y1="162" x2="470" y2="153" stroke="#185FA5" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="478" cy="162" r="2.3" fill="#185FA5"/>
-        <rect x="466" y="182" width="24" height="5" rx="1" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
-        <rect x="474" y="187" width="8" height="6" rx="1" fill="#888780"/>
-        <rect x="456" y="140" width="17" height="13" rx="6" fill="#185FA5"/>
-        <text style="font-size:8px;font-weight:500;fill:#fff;" x="464" y="149" text-anchor="middle">G2</text>
-        <text style="font-size:8px;fill:#185FA5;" x="478" y="136" text-anchor="middle">P810</text>
+        <circle cx="476" cy="136" r="20" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.5"/>
+        <circle cx="476" cy="136" r="14" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
+        <line x1="476" y1="123" x2="476" y2="127" stroke="#185FA5" stroke-width="1"/>
+        <line x1="487" y1="126" x2="484" y2="130" stroke="#185FA5" stroke-width="1"/>
+        <line x1="465" y1="126" x2="468" y2="130" stroke="#185FA5" stroke-width="1"/>
+        <line x1="476" y1="136" x2="484" y2="127" stroke="#185FA5" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="476" cy="136" r="2.5" fill="#185FA5"/>
+        <text style="font-size:7.5px;font-weight:600;fill:#0C447C;" x="476" y="164" text-anchor="middle">G2 · P810</text>
+        <!-- 헤더로 연결선 -->
+        <line x1="476" y1="156" x2="476" y2="186" stroke="#185FA5" stroke-width="1.8"/>
       </g>
 
-      <!-- S2 -->
+      <!-- 헤더 T2 — 원통형, 헤더 배관 위 -->
+      <g class="eq-item" onclick="showInfo('p1','t2')">
+        <rect x="555" y="120" width="26" height="44" rx="13" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+        <rect x="560" y="108" width="16" height="14" rx="4" fill="#5F5E5A" stroke="#444441" stroke-width="0.6"/>
+        <line x1="568" y1="108" x2="568" y2="100" stroke="#5F5E5A" stroke-width="1.4" stroke-dasharray="2 2"/>
+        <circle cx="568" cy="141" r="4" fill="#D3D1C7" stroke="#888780" stroke-width="0.6"/>
+        <rect x="563" y="162" width="10" height="6" rx="1.5" fill="#888780"/>
+        <text style="font-size:7.5px;font-weight:600;fill:#0C447C;" x="568" y="178" text-anchor="middle">T2 · UPT863</text>
+        <line x1="568" y1="168" x2="568" y2="186" stroke="#185FA5" stroke-width="1.8"/>
+      </g>
+
+      <!-- 헤더 S2 — 헤더 배관 위 -->
       <g class="eq-item" onclick="showInfo('p1','s2')">
-        <circle cx="535" cy="162" r="19" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.5"/>
-        <circle cx="535" cy="162" r="14" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
-        <line x1="535" y1="162" x2="543" y2="153" stroke="#185FA5" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="535" cy="162" r="2.3" fill="#185FA5"/>
-        <polygon points="546,173 550,166 554,173" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.5"/>
-        <rect x="522" y="148" width="10" height="7" rx="1" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
-        <line x1="545" y1="142" x2="545" y2="134" stroke="#185FA5" stroke-width="1.2" stroke-dasharray="2 2"/>
-        <text style="font-size:7px;fill:#0C447C;" x="553" y="133">신호</text>
-        <rect x="523" y="182" width="24" height="5" rx="1" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
-        <rect x="531" y="187" width="8" height="6" rx="1" fill="#888780"/>
-        <rect x="513" y="140" width="17" height="13" rx="6" fill="#185FA5"/>
-        <text style="font-size:8px;font-weight:500;fill:#fff;" x="521" y="149" text-anchor="middle">S2</text>
-        <text style="font-size:8px;fill:#185FA5;" x="535" y="136" text-anchor="middle">P840</text>
+        <circle cx="660" cy="136" r="20" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.5"/>
+        <circle cx="660" cy="136" r="14" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
+        <line x1="660" y1="123" x2="660" y2="127" stroke="#185FA5" stroke-width="1"/>
+        <line x1="671" y1="126" x2="668" y2="130" stroke="#185FA5" stroke-width="1"/>
+        <line x1="649" y1="126" x2="652" y2="130" stroke="#185FA5" stroke-width="1"/>
+        <line x1="660" y1="136" x2="668" y2="127" stroke="#185FA5" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="660" cy="136" r="2.5" fill="#185FA5"/>
+        <polygon points="668,144 672,138 676,144" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.3"/>
+        <rect x="648" y="120" width="9" height="6" rx="1" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.4"/>
+        <text style="font-size:7.5px;font-weight:600;fill:#0C447C;" x="660" y="164" text-anchor="middle">S2 · P840</text>
+        <line x1="660" y1="156" x2="660" y2="186" stroke="#185FA5" stroke-width="1.8"/>
       </g>
 
-      <line x1="478" y1="128" x2="478" y2="143" stroke="#185FA5" stroke-width="2.5"/>
-      <line x1="535" y1="128" x2="535" y2="143" stroke="#185FA5" stroke-width="2.5"/>
+      <!-- 헤더 배관 -->
+      <rect x="370" y="186" width="396" height="14" rx="4" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.8"/>
+      <text style="font-size:9px;font-weight:500;fill:#0C447C;" x="568" y="197" text-anchor="middle">매니폴드 헤더</text>
+      <line class="flow-lo" x1="358" y1="193" x2="370" y2="193" stroke="#185FA5" stroke-width="3" stroke-linecap="round"/>
 
-      <rect x="422" y="196" width="246" height="16" rx="4" fill="none" stroke="#185FA5" stroke-width="0.5" stroke-dasharray="3 2"/>
-      <text style="font-size:9px;fill:#0C447C;" x="545" y="207" text-anchor="middle">헤더 위 G2·S2 — Center back mount</text>
+      <!-- Stick 분기 수직선 -->
+      <line x1="450" y1="200" x2="450" y2="230" stroke="#185FA5" stroke-width="2.5"/>
+      <line x1="568" y1="200" x2="568" y2="230" stroke="#185FA5" stroke-width="2.5"/>
+      <line x1="686" y1="200" x2="686" y2="230" stroke="#185FA5" stroke-width="2.5"/>
+
+      <!-- Stick 라벨 -->
+      <text style="font-size:9px;font-weight:600;fill:#0C447C;" x="450" y="246" text-anchor="middle">Stick 1</text>
+      <text style="font-size:9px;font-weight:600;fill:#0C447C;" x="568" y="246" text-anchor="middle">Stick 2</text>
+      <text style="font-size:9px;font-weight:600;fill:#0C447C;" x="686" y="246" text-anchor="middle">Stick 3</text>
+      <text style="font-size:8px;fill:#888780;" x="762" y="240">···</text>
+      <text style="font-size:7.5px;fill:#888780;" x="762" y="252">현장마다 상이</text>
+
+      <!-- ── STICK 1 세로선 ── -->
+      <line x1="450" y1="254" x2="450" y2="444" stroke="#185FA5" stroke-width="3" stroke-linecap="round"/>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <circle cx="450" cy="286" r="19" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.6"/>
+        <circle cx="450" cy="286" r="13" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
+        <line x1="450" y1="274" x2="450" y2="278" stroke="#D85A30" stroke-width="1"/>
+        <line x1="460" y1="277" x2="457" y2="281" stroke="#D85A30" stroke-width="1"/>
+        <line x1="440" y1="277" x2="443" y2="281" stroke="#D85A30" stroke-width="1"/>
+        <line x1="450" y1="286" x2="457" y2="277" stroke="#D85A30" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="450" cy="286" r="2.5" fill="#D85A30"/>
+        <rect x="443" y="267" width="14" height="7" rx="2" fill="#E24B4A"/>
+        <text style="font-size:7.5px;fill:#712B13;" x="413" y="282" text-anchor="middle">G · P810</text>
+      </g>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <rect x="439" y="334" width="22" height="36" rx="11" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4"/>
+        <rect x="444" y="322" width="14" height="14" rx="4" fill="#5F5E5A" stroke="#444441" stroke-width="0.5"/>
+        <line x1="451" y1="322" x2="451" y2="314" stroke="#5F5E5A" stroke-width="1.3" stroke-dasharray="2 2"/>
+        <circle cx="451" cy="350" r="3.5" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+        <rect x="446" y="368" width="10" height="5" rx="1.5" fill="#888780"/>
+        <text style="font-size:7.5px;fill:#0C447C;" x="413" y="348" text-anchor="middle">T · UPT863</text>
+      </g>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <circle cx="450" cy="416" r="14" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.4"/>
+        <circle cx="450" cy="416" r="10" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
+        <line x1="450" y1="406" x2="450" y2="410" stroke="#185FA5" stroke-width="1"/>
+        <line x1="458" y1="409" x2="456" y2="412" stroke="#185FA5" stroke-width="1"/>
+        <line x1="442" y1="409" x2="444" y2="412" stroke="#185FA5" stroke-width="1"/>
+        <line x1="450" y1="416" x2="456" y2="409" stroke="#185FA5" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="450" cy="416" r="2" fill="#185FA5"/>
+        <polygon points="456,422 459,418 462,422" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.3"/>
+        <text style="font-size:7.5px;fill:#0C447C;" x="413" y="414" text-anchor="middle">S · P840</text>
+      </g>
+
+      <line x1="450" y1="444" x2="450" y2="472" stroke="#185FA5" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#ahb)"/>
+      <text style="font-size:8px;fill:#0C447C;" x="450" y="486" text-anchor="middle">Tool A</text>
+
+      <!-- ── STICK 2 세로선 ── -->
+      <line x1="568" y1="254" x2="568" y2="444" stroke="#185FA5" stroke-width="3" stroke-linecap="round"/>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <circle cx="568" cy="286" r="19" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.6"/>
+        <circle cx="568" cy="286" r="13" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
+        <line x1="568" y1="274" x2="568" y2="278" stroke="#D85A30" stroke-width="1"/>
+        <line x1="578" y1="277" x2="575" y2="281" stroke="#D85A30" stroke-width="1"/>
+        <line x1="558" y1="277" x2="561" y2="281" stroke="#D85A30" stroke-width="1"/>
+        <line x1="568" y1="286" x2="575" y2="277" stroke="#D85A30" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="568" cy="286" r="2.5" fill="#D85A30"/>
+        <rect x="561" y="267" width="14" height="7" rx="2" fill="#E24B4A"/>
+      </g>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <rect x="557" y="334" width="22" height="36" rx="11" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4"/>
+        <rect x="562" y="322" width="14" height="14" rx="4" fill="#5F5E5A" stroke="#444441" stroke-width="0.5"/>
+        <line x1="569" y1="322" x2="569" y2="314" stroke="#5F5E5A" stroke-width="1.3" stroke-dasharray="2 2"/>
+        <circle cx="569" cy="350" r="3.5" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+        <rect x="564" y="368" width="10" height="5" rx="1.5" fill="#888780"/>
+      </g>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <circle cx="568" cy="416" r="14" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.4"/>
+        <circle cx="568" cy="416" r="10" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
+        <line x1="568" y1="406" x2="568" y2="410" stroke="#185FA5" stroke-width="1"/>
+        <line x1="576" y1="409" x2="574" y2="412" stroke="#185FA5" stroke-width="1"/>
+        <line x1="560" y1="409" x2="562" y2="412" stroke="#185FA5" stroke-width="1"/>
+        <line x1="568" y1="416" x2="574" y2="409" stroke="#185FA5" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="568" cy="416" r="2" fill="#185FA5"/>
+        <polygon points="574,422 577,418 580,422" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.3"/>
+      </g>
+
+      <line x1="568" y1="444" x2="568" y2="472" stroke="#185FA5" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#ahb)"/>
+      <text style="font-size:8px;fill:#0C447C;" x="568" y="486" text-anchor="middle">Tool B</text>
+
+      <!-- ── STICK 3 세로선 ── -->
+      <line x1="686" y1="254" x2="686" y2="444" stroke="#185FA5" stroke-width="3" stroke-linecap="round"/>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <circle cx="686" cy="286" r="19" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.6"/>
+        <circle cx="686" cy="286" r="13" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
+        <line x1="686" y1="274" x2="686" y2="278" stroke="#D85A30" stroke-width="1"/>
+        <line x1="696" y1="277" x2="693" y2="281" stroke="#D85A30" stroke-width="1"/>
+        <line x1="676" y1="277" x2="679" y2="281" stroke="#D85A30" stroke-width="1"/>
+        <line x1="686" y1="286" x2="693" y2="277" stroke="#D85A30" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="686" cy="286" r="2.5" fill="#D85A30"/>
+        <rect x="679" y="267" width="14" height="7" rx="2" fill="#E24B4A"/>
+        <text style="font-size:7.5px;fill:#712B13;" x="722" y="282" text-anchor="middle">G · P810</text>
+      </g>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <rect x="675" y="334" width="22" height="36" rx="11" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4"/>
+        <rect x="680" y="322" width="14" height="14" rx="4" fill="#5F5E5A" stroke="#444441" stroke-width="0.5"/>
+        <line x1="687" y1="322" x2="687" y2="314" stroke="#5F5E5A" stroke-width="1.3" stroke-dasharray="2 2"/>
+        <circle cx="687" cy="350" r="3.5" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+        <rect x="682" y="368" width="10" height="5" rx="1.5" fill="#888780"/>
+        <text style="font-size:7.5px;fill:#0C447C;" x="722" y="348" text-anchor="middle">T · UPT863</text>
+      </g>
+
+      <g class="eq-item" onclick="showInfo('p1','stick')">
+        <circle cx="686" cy="416" r="14" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.4"/>
+        <circle cx="686" cy="416" r="10" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
+        <line x1="686" y1="406" x2="686" y2="410" stroke="#185FA5" stroke-width="1"/>
+        <line x1="694" y1="409" x2="692" y2="412" stroke="#185FA5" stroke-width="1"/>
+        <line x1="678" y1="409" x2="680" y2="412" stroke="#185FA5" stroke-width="1"/>
+        <line x1="686" y1="416" x2="692" y2="409" stroke="#185FA5" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="686" cy="416" r="2" fill="#185FA5"/>
+        <polygon points="692,422 695,418 698,422" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.3"/>
+        <text style="font-size:7.5px;fill:#0C447C;" x="722" y="414" text-anchor="middle">S · P840</text>
+      </g>
+
+      <line x1="686" y1="444" x2="686" y2="472" stroke="#185FA5" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#ahb)"/>
+      <text style="font-size:8px;fill:#0C447C;" x="686" y="486" text-anchor="middle">Tool C</text>
+
+      <!-- 수량 강조 박스 -->
+      <rect x="370" y="498" width="408" height="44" rx="8" fill="#fff" stroke="#185FA5" stroke-width="0.8"/>
+      <text style="font-size:9px;font-weight:600;fill:#0C447C;" x="574" y="514" text-anchor="middle">VMB/VMP 1대 계기 수량 예시 (Stick 4개 기준)</text>
+      <text style="font-size:9px;fill:#185FA5;" x="574" y="530" text-anchor="middle">헤더 G+T+S = 3개  +  Stick 4개 × (G+T+S) = 12개  →  최대 15개/대</text>
 
       <!-- Process Tool -->
       <g class="eq-item" onclick="showInfo('p1','tool')">
-        <rect x="702" y="80" width="98" height="262" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.2"/>
-        <text style="font-size:11px;font-weight:500;fill:#2C2C2A;" x="751" y="100" text-anchor="middle">Process</text>
-        <text style="font-size:11px;font-weight:500;fill:#2C2C2A;" x="751" y="113" text-anchor="middle">Tool</text>
-        <rect x="714" y="128" width="74" height="76" rx="5" fill="#D3D1C7" stroke="#888780" stroke-width="0.8"/>
-        <ellipse cx="751" cy="166" rx="24" ry="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
-        <text style="font-size:9px;fill:#5F5E5A;" x="751" y="222" text-anchor="middle">Pump</text>
-        <rect x="738" y="212" width="28" height="30" rx="3" fill="#B4B2A9" stroke="#888780" stroke-width="0.5"/>
-        <rect x="710" y="262" width="84" height="20" rx="4" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
-        <text style="font-size:9px;font-weight:500;fill:#5F5E5A;" x="751" y="276" text-anchor="middle">CVD / Etch 등</text>
+        <rect x="800" y="40" width="148" height="380" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.2"/>
+        <text style="font-size:11px;font-weight:500;fill:#2C2C2A;" x="874" y="60" text-anchor="middle">Process Tool</text>
+        <text style="font-size:8.5px;fill:#5F5E5A;" x="874" y="74" text-anchor="middle">CVD / Etch 등</text>
+        <rect x="816" y="90" width="116" height="100" rx="5" fill="#D3D1C7" stroke="#888780" stroke-width="0.8"/>
+        <ellipse cx="874" cy="140" rx="40" ry="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+        <text style="font-size:8.5px;fill:#5F5E5A;" x="874" y="230" text-anchor="middle">Tool A ← Stick 1</text>
+        <text style="font-size:8.5px;fill:#5F5E5A;" x="874" y="246" text-anchor="middle">Tool B ← Stick 2</text>
+        <text style="font-size:8.5px;fill:#5F5E5A;" x="874" y="262" text-anchor="middle">Tool C ← Stick 3</text>
       </g>
-      <line class="flow-lo" x1="680" y1="162" x2="714" y2="162" stroke="#185FA5" stroke-width="4" stroke-linecap="round" marker-end="url(#ahb)"/>
+      <line class="flow-lo" x1="778" y1="303" x2="800" y2="303" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ahb)"/>
 
       <!-- 범례 -->
-      <rect x="34" y="392" width="792" height="78" rx="6" fill="none" stroke="#D3D1C7" stroke-width="0.5"/>
-      <text style="font-size:11px;fill:#888780;" x="48" y="410">범례:</text>
-      <circle cx="98" cy="406" r="9" fill="#FFF8F5" stroke="#D85A30" stroke-width="1"/>
-      <line x1="98" y1="400" x2="102" y2="406" stroke="#D85A30" stroke-width="1.2" stroke-linecap="round"/>
-      <text style="font-size:11px;fill:#2C2C2A;" x="110" y="410">G1a·G1b — 각 실린더 Pigtail 직결, 개별 잔량 표시</text>
-      <circle cx="98" cy="428" r="9" fill="#FFF8F5" stroke="#D85A30" stroke-width="1"/>
-      <line x1="98" y1="422" x2="102" y2="428" stroke="#D85A30" stroke-width="1.2" stroke-linecap="round"/>
-      <polygon points="104,436 107,430 110,436" fill="#E24B4A" stroke-width="0"/>
-      <text style="font-size:11px;fill:#2C2C2A;" x="114" y="432">S1 — Changeover Manifold 이후 공통 배관에 1개만 설치 (실린더별 X)</text>
-      <circle cx="98" cy="452" r="9" fill="#EFF6FF" stroke="#185FA5" stroke-width="1"/>
-      <text style="font-size:11px;fill:#2C2C2A;" x="110" y="456">G2·S2 — VMB 내부 헤더 위, Center back mount</text>
-      <rect x="450" y="400" width="9" height="9" rx="4.5" fill="#534AB7"/>
-      <text style="font-size:11px;fill:#3C3489;" x="462" y="408">Low mount Code A — Cabinet 고압 측</text>
-      <rect x="450" y="418" width="9" height="9" rx="4.5" fill="#185FA5"/>
-      <text style="font-size:11px;fill:#0C447C;" x="462" y="426">Center back Code F — VMB 내부</text>
+      <rect x="28" y="498" width="330" height="82" rx="6" fill="var(--surface)" stroke="#D3D1C7" stroke-width="0.8"/>
+      <text style="font-size:9px;font-weight:600;fill:var(--text-sec);" x="193" y="514" text-anchor="middle">범례</text>
+      <circle cx="46" cy="530" r="8" fill="#FFF8F5" stroke="#D85A30" stroke-width="1.2"/>
+      <line x1="46" y1="530" x2="50" y2="525" stroke="#D85A30" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="46" cy="530" r="1.5" fill="#D85A30"/>
+      <text style="font-size:9px;fill:#2C2C2A;" x="60" y="534">G = P810 Pressure Gauge</text>
+      <rect x="40" y="548" width="12" height="18" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+      <rect x="43" y="542" width="6" height="8" rx="3" fill="#5F5E5A"/>
+      <text style="font-size:9px;fill:#2C2C2A;" x="60" y="560">T = UPT863 Pressure Transmitter</text>
+      <circle cx="46" cy="572" r="8" fill="#EFF6FF" stroke="#185FA5" stroke-width="1.2"/>
+      <line x1="46" y1="572" x2="50" y2="567" stroke="#185FA5" stroke-width="1.2" stroke-linecap="round"/>
+      <polygon points="50,577 53,573 56,577" fill="#E24B4A"/>
+      <text style="font-size:9px;fill:#2C2C2A;" x="60" y="576">S = P840 Pressure Switch</text>
     </svg>
     <div id="p1-info"></div>
   </div>
 </section>
 
-<!-- ════════ PAGE 2 ════════ -->
 <section class="page" id="p2">
-  <div class="section-title">제품 역할 이해</div>
-  <h1 class="page-heading">P810 Gauge vs P840 Switch — 왜 둘 다 필요한가</h1>
-  <p class="page-desc">두 제품 모두 원형 다이얼 indicator 타입입니다. P840은 아날로그 mechanical switch로, 전기 신호 출력은 가능하지만 자동 차단은 외부 제어 시스템이 필요합니다.</p>
+  <div class="section-title">설치 패턴 이해</div>
+  <h1 class="page-heading">실제 설치되는 3가지 조합 패턴</h1>
+  <p class="page-desc">P810은 모든 패턴의 베이스입니다. 여기에 안전성·정밀도 요구 수준에 따라 Transmitter, Switch, 또는 둘 다가 추가됩니다. Transmitter를 쓴다고 Switch가 필요 없어지는 게 아니라, 둘은 안전 철학 자체가 다릅니다.</p>
 
-  <div class="two-col" style="margin-bottom:20px;">
-    <div style="border-radius:10px;border:1.5px solid var(--red);background:var(--red-bg);padding:18px;">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <svg width="64" height="64" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="30" fill="#FFF8F5" stroke="#D85A30" stroke-width="2"/>
-          <circle cx="32" cy="32" r="23" fill="none" stroke="#F5C4B3" stroke-width="0.5"/>
-          <line x1="32" y1="10" x2="32" y2="16" stroke="#D85A30" stroke-width="1.2"/>
-          <line x1="47" y1="15" x2="43" y2="20" stroke="#D85A30" stroke-width="1.2"/>
-          <line x1="17" y1="15" x2="21" y2="20" stroke="#D85A30" stroke-width="1.2"/>
-          <line x1="32" y1="32" x2="44" y2="18" stroke="#D85A30" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="32" cy="32" r="4" fill="#D85A30"/>
-          <circle cx="32" cy="32" r="2" fill="#FFF8F5"/>
-          <rect x="28" y="60" width="8" height="5" rx="2" fill="#888780"/>
-        </svg>
-        <div>
-          <div style="font-size:14px;font-weight:600;color:var(--red-dark);">P810 — Pressure Gauge</div>
-          <div style="font-size:11px;color:#993C1D;margin-top:3px;">원형 다이얼 indicator | φ35/50/63mm</div>
-          <div style="margin-top:6px;">
-            <span class="spec-badge" style="background:#FAECE7;color:#712B13;">바늘만</span>
-            <span class="spec-badge" style="background:#FAECE7;color:#712B13;">SET 포인터 없음</span>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:13px;color:var(--red-dark);line-height:1.7;">
-        현재 압력값을 <strong>바늘로 항상 표시</strong><br>
-        신호 출력 없음 — 작업자가 육안으로 읽는 계기<br>
-        <span style="background:#FAECE7;padding:2px 8px;border-radius:4px;font-size:12px;display:inline-block;margin-top:5px;">바늘이 142 psi를 가리키고 있음</span>
-      </div>
-    </div>
-    <div style="border-radius:10px;border:1.5px solid var(--blue);background:var(--blue-bg);padding:18px;">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <svg width="64" height="64" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="30" fill="#EFF6FF" stroke="#185FA5" stroke-width="2"/>
-          <circle cx="32" cy="32" r="23" fill="none" stroke="#B5D4F4" stroke-width="0.5"/>
-          <line x1="32" y1="10" x2="32" y2="16" stroke="#185FA5" stroke-width="1.2"/>
-          <line x1="32" y1="32" x2="20" y2="18" stroke="#185FA5" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="32" cy="32" r="4" fill="#185FA5"/>
-          <circle cx="32" cy="32" r="2" fill="#EFF6FF"/>
-          <polygon points="46,52 51,43 56,52" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.5"/>
-          <rect x="50" y="48" width="10" height="6" rx="2" fill="#A32D2D"/>
-          <rect x="12" y="20" width="14" height="9" rx="2" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
-          <text style="font-size:5px;fill:#3B6D11;" x="19" y="27" text-anchor="middle">CL</text>
-          <rect x="28" y="60" width="8" height="5" rx="2" fill="#888780"/>
-          <line x1="48" y1="56" x2="48" y2="64" stroke="#185FA5" stroke-width="1.5"/>
-          <line x1="44" y1="64" x2="52" y2="64" stroke="#185FA5" stroke-width="1.5"/>
-        </svg>
-        <div>
-          <div style="font-size:14px;font-weight:600;color:var(--blue-dark);">P840 — Pressure Switch (Analog)</div>
-          <div style="font-size:11px;color:#185FA5;margin-top:3px;">원형 다이얼 indicator type | φ50mm 고정</div>
-          <div style="margin-top:6px;">
-            <span class="spec-badge" style="background:#E6F1FB;color:#0C447C;">바늘 + SET 포인터</span>
-            <span class="spec-badge" style="background:#E6F1FB;color:#0C447C;">전선 출구</span>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:13px;color:var(--blue-dark);line-height:1.7;">
-        P810과 동일하게 <strong>바늘로 현재 압력 표시</strong><br>
-        추가로 <strong style="color:#A32D2D;">빨간 SET 포인터</strong> — 설정 압력 위치 표시<br>
-        바늘이 SET 포인터 도달 시 <strong>전기 접점 신호 출력</strong><br>
-        <span style="background:#FEF6E4;padding:2px 8px;border-radius:4px;font-size:12px;display:inline-block;margin-top:5px;color:#7A4A00;">아날로그 제품 — 자동 차단은 외부 PLC·릴레이 필요</span>
-      </div>
-    </div>
-  </div>
-
+  <!-- Transmitter vs Switch 철학 차이 우선 설명 -->
   <div style="border-radius:10px;border:1px solid var(--warn);background:var(--warn-bg);padding:16px 20px;margin-bottom:20px;">
-    <div style="font-size:13px;font-weight:600;color:#7A4A00;margin-bottom:10px;">P840 아날로그 Mechanical Switch — 동작 원리와 한계</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div>
-        <div style="font-size:12px;font-weight:500;color:#7A4A00;margin-bottom:6px;">동작 원리</div>
-        <div style="font-size:12px;color:var(--text-sec);line-height:1.7;">부르동관이 압력을 받아 변형 → 바늘이 움직임 → 바늘이 SET 포인터 위치의 기계적 접점을 물리적으로 누름 → 전기 접점 ON/OFF 신호 출력</div>
-      </div>
-      <div>
-        <div style="font-size:12px;font-weight:500;color:#7A4A00;margin-bottom:6px;">신호 출력 후 무엇이 가능한가</div>
-        <div style="font-size:12px;color:var(--text-sec);line-height:1.7;">
-          <span style="color:#3B6D11;font-weight:500;">가능</span> — 경보등·버저 ON/OFF, PLC 입력 신호, 릴레이 연결 시 외부 장치 제어<br>
-          <span style="color:#A32D2D;font-weight:500;">불가(단독)</span> — ESO Valve 직접 자동 차단 → 외부 PLC·릴레이·솔레노이드 구성 필요
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Primary/Reserve 구성에서 G1/S1 배치 설명 -->
-  <div class="card" style="margin-bottom:20px;">
-    <div style="font-size:14px;font-weight:600;margin-bottom:14px;">Primary/Reserve 듀얼 실린더에서 G1·S1 배치가 다른 이유</div>
+    <div style="font-size:13px;font-weight:600;color:#7A4A00;margin-bottom:10px;">Transmitter를 쓰면 Switch가 필요 없어지는가 — 아니다</div>
     <div class="two-col">
-      <div style="padding:14px;border-radius:8px;background:#FFF8F5;border:1px solid #D85A30;">
-        <div style="font-size:13px;font-weight:600;color:#712B13;margin-bottom:8px;">G1 (Gauge) — 실린더마다 개별 설치</div>
-        <div style="font-size:12px;color:var(--text-sec);line-height:1.7;">Primary, Reserve 각각의 잔량을 개별로 알아야 자동전환 타이밍과 교체 계획을 세울 수 있음. 그래서 G1a, G1b 두 개가 각 실린더 Pigtail에 직결됨</div>
+      <div>
+        <div style="font-size:12px;font-weight:500;color:#7A4A00;margin-bottom:6px;">UPT863 (소프트웨어 기반 판단)</div>
+        <div style="font-size:12px;color:var(--text-sec);line-height:1.7;">4~20mA 신호를 PLC가 받아 소프트웨어 로직으로 "임계치 초과 시 차단"을 판단. PLC·배선·소프트웨어 전체가 정상이어야 안전 기능이 성립</div>
       </div>
-      <div style="padding:14px;border-radius:8px;background:#FFF8F5;border:1px solid #D85A30;">
-        <div style="font-size:13px;font-weight:600;color:#712B13;margin-bottom:8px;">S1 (Switch) — 합류 지점에 1개만</div>
-        <div style="font-size:12px;color:var(--text-sec);line-height:1.7;">Switch의 목적은 "공급 라인 전체가 저압으로 떨어졌는지" 감지하는 것. 두 실린더가 Changeover Manifold에서 합류한 이후 공통 배관 한 곳에만 설치하면 충분 — 비용 절감 효과도 있음</div>
+      <div>
+        <div style="font-size:12px;font-weight:500;color:#7A4A00;margin-bottom:6px;">P840 (하드웨어 독립 동작)</div>
+        <div style="font-size:12px;color:var(--text-sec);line-height:1.7;">압력 자체가 기계적으로 접점을 누르는 방식이라 PLC 로직과 무관하게 독립 동작. PLC가 다운돼도 마지막 안전판 역할 수행</div>
       </div>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:#7A4A00;">고위험 유해가스의 안전 critical 구간은 "이중화"를 위해 Transmitter + Switch를 함께 두는 경우가 많습니다.</div>
+  </div>
+
+  <!-- 3 PATTERNS -->
+  <div class="three-col" style="margin-bottom:20px;">
+    <div class="eq-item" onclick="showInfo('p2','pattern1')" style="border-radius:10px;border:1.5px solid var(--purple);background:var(--purple-bg);padding:16px;cursor:pointer;">
+      <div style="font-size:11px;font-weight:600;color:#3C3489;margin-bottom:8px;">패턴 1</div>
+      <div style="font-size:14px;font-weight:600;color:#3C3489;margin-bottom:10px;">Gauge + Transmitter + Switch</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="spec-badge" style="background:#fff;color:#712B13;">P810</span>
+        <span class="spec-badge" style="background:#fff;color:#0C447C;">UPT863</span>
+        <span class="spec-badge" style="background:#fff;color:#712B13;">P840</span>
+      </div>
+      <div style="font-size:12px;color:#3C3489;line-height:1.65;">고위험 유해가스 + 신형 fab + 안전 critical 구간. 이중 보장 필요 — 클릭하여 자세히</div>
+    </div>
+    <div class="eq-item" onclick="showInfo('p2','pattern2')" style="border-radius:10px;border:1.5px solid var(--blue);background:var(--blue-bg);padding:16px;cursor:pointer;">
+      <div style="font-size:11px;font-weight:600;color:var(--blue-dark);margin-bottom:8px;">패턴 2</div>
+      <div style="font-size:14px;font-weight:600;color:var(--blue-dark);margin-bottom:10px;">Gauge + Transmitter</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="spec-badge" style="background:#fff;color:#712B13;">P810</span>
+        <span class="spec-badge" style="background:#fff;color:#0C447C;">UPT863</span>
+      </div>
+      <div style="font-size:12px;color:var(--blue-dark);line-height:1.65;">정밀 모니터링은 필요하나 독립 안전 인터락까지는 불요. 일반 프로세스 압력 구간 — 클릭하여 자세히</div>
+    </div>
+    <div class="eq-item" onclick="showInfo('p2','pattern3')" style="border-radius:10px;border:1.5px solid #993C1D;background:#FFF1EA;padding:16px;cursor:pointer;">
+      <div style="font-size:11px;font-weight:600;color:#712B13;margin-bottom:8px;">패턴 3</div>
+      <div style="font-size:14px;font-weight:600;color:#712B13;margin-bottom:10px;">Gauge + Switch</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="spec-badge" style="background:#fff;color:#712B13;">P810</span>
+        <span class="spec-badge" style="background:#fff;color:#712B13;">P840</span>
+      </div>
+      <div style="font-size:12px;color:#712B13;line-height:1.65;">구형 설비(접점 PLC) 또는 비유해가스 단순 경보 구간 — 클릭하여 자세히</div>
     </div>
   </div>
 
-  <div class="tab-row">
-    <button class="tab-btn on" onclick="setScenario(0,this)">정상 운전</button>
-    <button class="tab-btn" onclick="setScenario(1,this)">압력 이상 발생</button>
-    <button class="tab-btn" onclick="setScenario(2,this)">Switch만 있으면?</button>
-    <button class="tab-btn" onclick="setScenario(3,this)">Gauge만 있으면?</button>
-  </div>
-  <div id="scenario-box" style="margin-bottom:22px;"></div>
+  <div id="p2-info" style="margin-bottom:22px;"></div>
 
   <div class="card" style="padding:0;overflow:hidden;">
-    <div style="padding:11px 18px;background:var(--surface2);font-size:13px;font-weight:500;border-bottom:1px solid var(--border);">한눈에 비교</div>
+    <div style="padding:11px 18px;background:var(--surface2);font-size:13px;font-weight:500;border-bottom:1px solid var(--border);">3제품 스펙 한눈에 비교</div>
     <table class="cmp-table">
-      <thead><tr><th>항목</th><th style="color:var(--red-dark);">P810 Gauge</th><th style="color:var(--blue-dark);">P840 Switch (Analog)</th></tr></thead>
+      <thead><tr><th>항목</th><th style="color:var(--red-dark);">P810 Gauge</th><th style="color:#712B13;">P840 Switch</th><th style="color:var(--blue-dark);">UPT863 Transmitter</th></tr></thead>
       <tbody>
-        <tr><td style="color:var(--text-sec);">타입</td><td>Indicator Gauge</td><td>Indicator Pressure Switch</td></tr>
-        <tr><td style="color:var(--text-sec);">바늘 (현재 압력)</td><td class="good">있음</td><td class="good">있음</td></tr>
-        <tr><td style="color:var(--text-sec);">SET 포인터</td><td class="bad">없음</td><td class="good">있음</td></tr>
-        <tr><td style="color:var(--text-sec);">전기 신호 출력</td><td class="bad">없음</td><td class="good">SET 도달 시 접점 ON/OFF</td></tr>
-        <tr><td style="color:var(--text-sec);">단독 자동 차단</td><td class="bad">불가</td><td class="bad">불가 (외부 PLC·릴레이 필요)</td></tr>
-        <tr><td style="color:var(--text-sec);">정확도</td><td>Grade A ±1~2% / B ±2~3%</td><td>±2.0% of full scale</td></tr>
-        <tr><td style="color:var(--text-sec);">Primary/Reserve 구성 시</td><td>실린더마다 개별 설치 (G1a, G1b)</td><td>합류 지점 1개만 (S1)</td></tr>
+        <tr><td style="color:var(--text-sec);">출력</td><td>바늘 (육안)</td><td>접점 ON/OFF</td><td>4~20mA 연속</td></tr>
+        <tr><td style="color:var(--text-sec);">판단 주체</td><td>사람</td><td>하드웨어 (PLC 독립)</td><td>PLC 소프트웨어</td></tr>
+        <tr><td style="color:var(--text-sec);">전원</td><td class="good">불필요</td><td>28V AC/DC, 0.5A</td><td>10~40 VDC</td></tr>
+        <tr><td style="color:var(--text-sec);">정확도</td><td>±1~3% FS</td><td>±2.0% FS</td><td class="good">±0.25% FS</td></tr>
+        <tr><td style="color:var(--text-sec);">트렌드 기록</td><td class="bad">불가</td><td class="bad">불가</td><td class="good">가능</td></tr>
       </tbody>
     </table>
   </div>
@@ -434,81 +479,48 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 <section class="page" id="p3">
   <div class="section-title">캘리포니아 대리점 재고 제안</div>
   <h1 class="page-heading">재고 구성 추천 근거</h1>
-  <p class="page-desc">P810 Gauge + P840 Switch 기준 압력 범위 및 마운팅 타입 추천 비율과 근거입니다.</p>
+  <p class="page-desc">압력 범위 비중과 제품군 비중을 구분해서 봅니다. 제품군 비중은 고객사의 설치 패턴(1/2/3) 분포에 따라 달라지는 변수입니다.</p>
 
   <div class="card" style="margin-bottom:16px;">
-    <div style="font-size:14px;font-weight:600;margin-bottom:16px;">압력 범위 구성</div>
-    <div class="spec-row">
-      <div class="spec-label" style="color:var(--red-dark);">0~3,000 psi</div>
-      <div class="spec-bar-wrap">
-        <div class="ratio-bar" style="background:linear-gradient(to right,#D85A30 20%,#e0ded6 20%);"></div>
-        <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">Gas Cabinet 고압 측 — Primary/Reserve 듀얼 구성 시 G1 2개 + S1 1개</div>
+    <div style="font-size:14px;font-weight:600;margin-bottom:10px;">압력 범위 구성 — 비교적 안정적인 근거</div>
+    <div style="display:flex;gap:16px;">
+      <div style="flex:1;padding:14px;border-radius:8px;background:#FFF8F5;border:1px solid #D85A30;">
+        <div style="font-size:13px;font-weight:600;color:#712B13;">0~3,000 psi — 약 20%</div>
+        <div style="font-size:11px;color:var(--text-sec);margin-top:6px;line-height:1.6;">Gas Cabinet 고압 측 전용. 유해가스에만 설치되므로 가스 종류에 좌우되는 수요</div>
       </div>
-      <div class="spec-note" style="color:var(--red-dark);font-weight:500;">재고 20%</div>
-    </div>
-    <div class="spec-row">
-      <div class="spec-label" style="color:var(--blue-dark);">0~160 psi</div>
-      <div class="spec-bar-wrap">
-        <div class="ratio-bar" style="background:linear-gradient(to right,#185FA5 80%,#e0ded6 80%);"></div>
-        <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">VMB 내부 헤더 + 각 Stick — G2+S2 세트 수요 압도적</div>
+      <div style="flex:1;padding:14px;border-radius:8px;background:#EFF6FF;border:1px solid #185FA5;">
+        <div style="font-size:13px;font-weight:600;color:#0C447C;">0~160 psi — 약 80%</div>
+        <div style="font-size:11px;color:var(--text-sec);margin-top:6px;line-height:1.6;">VMB·VMP 공통 저압 구간. 가스를 쓰는 한 항상 거치는 구간</div>
       </div>
-      <div class="spec-note" style="color:var(--blue-dark);font-weight:500;">재고 80%</div>
     </div>
   </div>
 
   <div class="card" style="margin-bottom:16px;">
-    <div style="font-size:14px;font-weight:600;margin-bottom:16px;">Mounting Type 구성</div>
-    <div class="spec-row">
-      <div class="spec-label" style="color:var(--purple);">Low Mount<br><span style="font-size:10px;color:var(--text-muted);">Code A</span></div>
-      <div class="spec-bar-wrap">
-        <div class="ratio-bar" style="background:linear-gradient(to right,#534AB7 30%,#e0ded6 30%);"></div>
-        <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">Pigtail 직결 G1a·G1b, 공통 배관 S1 적합</div>
-      </div>
-      <div class="spec-note" style="color:var(--purple);font-weight:500;">재고 30%</div>
-    </div>
-    <div class="spec-row">
-      <div class="spec-label" style="color:var(--blue-dark);">Center Back<br><span style="font-size:10px;color:var(--text-muted);">Code F</span></div>
-      <div class="spec-bar-wrap">
-        <div class="ratio-bar" style="background:linear-gradient(to right,#185FA5 70%,#e0ded6 70%);"></div>
-        <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">VMB 내부 헤더 위 G2·S2 표준</div>
-      </div>
-      <div class="spec-note" style="color:var(--blue-dark);font-weight:500;">재고 70%</div>
-    </div>
-  </div>
-
-  <div class="two-col" style="margin-bottom:16px;">
-    <div class="card">
-      <div style="font-size:13px;font-weight:600;color:var(--red-dark);margin-bottom:10px;">3,000 psi 소량인 이유</div>
-      <ul style="font-size:12px;color:var(--text-sec);line-height:1.85;padding-left:16px;">
-        <li>실린더 최대 충전압 3,000 psi 커버 필수</li>
-        <li>Primary/Reserve 구성 시 G1 2개 + S1 1개 = 3개</li>
-        <li>S1은 실린더마다 X, 합류 지점 1개로 충분</li>
-        <li>교체 빈도 낮음 → 소량 재고로 충분</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div style="font-size:13px;font-weight:600;color:var(--blue-dark);margin-bottom:10px;">160 psi 주력인 이유</div>
-      <ul style="font-size:12px;color:var(--text-sec);line-height:1.85;padding-left:16px;">
-        <li>Regulator Outlet 20~150 psi 여유 있게 커버</li>
-        <li>VMB 헤더에 G2+S2 세트</li>
-        <li>각 Stick에도 Gauge 추가 → 포인트 多</li>
-        <li>교체·유지보수 빈도 높음 → 상시 재고 필수</li>
-      </ul>
-    </div>
+    <div style="font-size:14px;font-weight:600;margin-bottom:10px;">설치 패턴별 제품군 구성 — 고객사 확인 필요</div>
+    <table class="cmp-table" style="margin-top:0;">
+      <thead><tr><th>패턴</th><th>구성</th><th>적용 조건</th><th>P810</th><th>UPT863</th><th>P840</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#3C3489;font-weight:500;">1</td><td>G+T+S</td><td style="font-size:11px;color:var(--text-sec);">고위험·신형·이중 안전</td><td class="good">●</td><td class="good">●</td><td class="good">●</td></tr>
+        <tr><td style="color:var(--blue-dark);font-weight:500;">2</td><td>G+T</td><td style="font-size:11px;color:var(--text-sec);">정밀 모니터링, 단일 안전</td><td class="good">●</td><td class="good">●</td><td style="color:var(--text-muted);">—</td></tr>
+        <tr><td style="color:#712B13;font-weight:500;">3</td><td>G+S</td><td style="font-size:11px;color:var(--text-sec);">구형 설비, 단순 경보</td><td class="good">●</td><td style="color:var(--text-muted);">—</td><td class="good">●</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">P810은 3패턴 모두에서 빠지지 않는 공통 베이스 — 재고 우선순위 1위</div>
   </div>
 
   <div class="card">
     <div style="font-size:14px;font-weight:600;margin-bottom:12px;">재고 추천안 부합 여부</div>
     <div class="verdict" style="background:var(--green-bg);border:1px solid var(--green);margin-bottom:10px;">
-      <span style="font-weight:600;color:var(--green-dark);">전반적으로 타당 — GDS 산업 실태와 부합</span><br>
-      <span style="font-size:12px;color:var(--text-sec);">압력 범위(20/80), 마운팅(30/70) 비율 모두 P810·P840 라인업의 실제 수요 패턴과 일치합니다.</span>
+      <span style="font-weight:600;color:var(--green-dark);">압력 범위 비율(20/80)은 타당 — 3제품 모두 갖추는 전략 권장</span><br>
+      <span style="font-size:12px;color:var(--text-sec);">P810을 베이스로 항상 확보하고, UPT863과 P840을 함께 재고에 포함하면 패턴 1·2·3 어떤 고객사 구성에도 즉시 대응 가능합니다. Transmitter 도입이 늘어도 Switch 수요가 사라지지 않는다는 점이 핵심입니다.</span>
     </div>
     <div class="verdict" style="background:var(--warn-bg);border:1px solid var(--warn);">
       <span style="font-weight:600;color:#7A4A00;">보완 검토 사항</span><br>
       <span style="font-size:12px;color:var(--text-sec);">
-        1. Primary/Reserve 듀얼 구성 비율 확인 — G1 수요가 예상보다 늘 수 있음<br>
-        2. 중간 압력 범위(0~300 psi) 수요 현장 확인 권장<br>
-        3. P841/842/843 비율, Swivel vs NPT, Grade A/B 고객사별 확인
+        1. 캘리포니아 고객사의 패턴 1/2/3 분포 비중 확인<br>
+        2. 안전 critical 구간(패턴 1) 비중이 높을수록 P840 동반 재고 필요<br>
+        3. 정밀공정(패턴 2) 비중 확인 — UPT863 단독 수요 가늠<br>
+        4. 위 표는 정성적 경향이며 실제 발주 데이터 축적 후 정량화 필요
       </span>
     </div>
   </div>
@@ -517,92 +529,71 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 <!-- ════════ PAGE 4 ════════ -->
 <section class="page" id="p4">
   <div class="section-title">제품 스펙 &amp; 오더 코드</div>
-  <h1 class="page-heading">P810 Gauge / P840 Switch 주요 스펙</h1>
-  <p class="page-desc">데이터시트(PD08-01, PD08-04) 기반 핵심 스펙 요약입니다.</p>
+  <h1 class="page-heading">P810 / P840 / UPT863 주요 스펙</h1>
+  <p class="page-desc">데이터시트(PD08-01, PD08-04, UD08-03) 기반 핵심 스펙 요약입니다.</p>
 
-  <div class="two-col" style="margin-bottom:16px;">
+  <div class="three-col" style="margin-bottom:16px;">
     <div class="card">
-      <div style="font-size:15px;font-weight:600;color:var(--red-dark);margin-bottom:14px;">P810 — UHP Pressure Gauge</div>
-      <table style="width:100%;border-collapse:collapse;font-size:12px;">
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);width:44%;">다이얼 직경</td><td style="padding:6px 0;">35 / 50 / 63 mm</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">재질 (습식부)</td><td style="padding:6px 0;">316L SS 전해연마</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">정확도</td><td style="padding:6px 0;">Grade A ±1~2% / Grade B ±2~3%</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">He 누설률</td><td style="padding:6px 0;">&lt;1×10⁻¹⁰ Pa·m³/s</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">Mounting</td><td style="padding:6px 0;">Code A / Code F / Code I</td></tr>
-        <tr><td style="padding:6px 0;color:var(--text-sec);">연결</td><td style="padding:6px 0;">¼" NPT male / Swivel male·female</td></tr>
+      <div style="font-size:14px;font-weight:600;color:var(--red-dark);margin-bottom:12px;">P810 Gauge</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">직경</td><td style="padding:5px 0;">35/50/63mm</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">재질</td><td style="padding:5px 0;">316L SS</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">정확도</td><td style="padding:5px 0;">±1~3% FS</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">출력</td><td style="padding:5px 0;">없음 (육안)</td></tr>
+        <tr><td style="padding:5px 0;color:var(--text-sec);">Mounting</td><td style="padding:5px 0;">A/F/I</td></tr>
       </table>
     </div>
     <div class="card">
-      <div style="font-size:15px;font-weight:600;color:var(--blue-dark);margin-bottom:14px;">P840 — UHP Pressure Switch (Analog Indicator)</div>
-      <table style="width:100%;border-collapse:collapse;font-size:12px;">
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);width:44%;">모델 구분</td><td style="padding:6px 0;">P841 (High) / P842 (High+Low) / P843 (Low)</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">동작 방식</td><td style="padding:6px 0;">Analog mechanical</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">Switch 정확도</td><td style="padding:6px 0;">±2.0% of full scale</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">전기 연결</td><td style="padding:6px 0;">26AWG PVC 6ft (2m)</td></tr>
-        <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-sec);">최대 전압/전류</td><td style="padding:6px 0;">28V AC/DC / 0.5A</td></tr>
-        <tr><td style="padding:6px 0;color:var(--text-sec);">Mounting</td><td style="padding:6px 0;">Code A / Code F</td></tr>
+      <div style="font-size:14px;font-weight:600;color:#712B13;margin-bottom:12px;">P840 Switch</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">모델</td><td style="padding:5px 0;">P841/842/843</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">방식</td><td style="padding:5px 0;">Analog mechanical</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">정확도</td><td style="padding:5px 0;">±2.0% FS</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">전원</td><td style="padding:5px 0;">28V AC/DC, 0.5A</td></tr>
+        <tr><td style="padding:5px 0;color:var(--text-sec);">Mounting</td><td style="padding:5px 0;">A/F</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div style="font-size:14px;font-weight:600;color:var(--blue-dark);margin-bottom:12px;">UPT863 Transmitter</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">센서</td><td style="padding:5px 0;">MEMS</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">재질</td><td style="padding:5px 0;">Hastelloy C22</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">정확도</td><td style="padding:5px 0;">±0.25% FS</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 0;color:var(--text-sec);">출력</td><td style="padding:5px 0;">4~20mA</td></tr>
+        <tr><td style="padding:5px 0;color:var(--text-sec);">전원</td><td style="padding:5px 0;">10~40 VDC</td></tr>
       </table>
     </div>
   </div>
 
   <div class="card" style="margin-bottom:16px;">
-    <div style="font-size:14px;font-weight:600;margin-bottom:16px;">오더 코드 — 재고 주력 아이템 예시</div>
+    <div style="font-size:14px;font-weight:600;margin-bottom:16px;">오더 코드 예시 — 3제품 공통 재고 라인업</div>
     <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:540px;">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
         <thead><tr style="background:var(--surface2);">
-          <th style="padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;">용도</th>
+          <th style="padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;">제품</th>
           <th style="padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;">오더 코드 예시</th>
           <th style="padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;">설명</th>
-          <th style="padding:9px 12px;text-align:center;border-bottom:1px solid var(--border);font-weight:500;">재고</th>
         </tr></thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:9px 12px;color:var(--text-sec);">Cabinet 고압 Gauge (실린더당)</td>
-            <td style="padding:9px 12px;font-family:monospace;color:var(--red-dark);">P810-1-A-3-SM-H-062-4-0</td>
-            <td style="padding:9px 12px;">φ50 / Low mount / Grade A / 0~250 bar (약 0~3,626 psi)</td>
-            <td style="padding:9px 12px;text-align:center;"><span style="background:#FAECE7;color:#712B13;padding:2px 8px;border-radius:4px;">20%</span></td>
+            <td style="padding:9px 12px;color:var(--red-dark);font-weight:500;">P810</td>
+            <td style="padding:9px 12px;font-family:monospace;color:var(--text-sec);">P810-1-F-3-SM-I-051-4-0</td>
+            <td style="padding:9px 12px;">φ50 / Center back / 0~2 MPa (약 290 psi)</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border);background:var(--surface2);">
-            <td style="padding:9px 12px;color:var(--text-sec);">Cabinet 고압 Switch (공통 1개)</td>
-            <td style="padding:9px 12px;font-family:monospace;color:var(--red-dark);">P843-1-A-5-SM-H-062-4-0</td>
-            <td style="padding:9px 12px;">P843 Low alarm / Low mount / 0~250 bar (약 0~3,626 psi)</td>
-            <td style="padding:9px 12px;text-align:center;"><span style="background:#FAECE7;color:#712B13;padding:2px 8px;border-radius:4px;">20%</span></td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:9px 12px;color:var(--text-sec);">VMB 저압 Gauge</td>
-            <td style="padding:9px 12px;font-family:monospace;color:var(--blue-dark);">P810-1-F-3-SM-I-051-4-0</td>
-            <td style="padding:9px 12px;">φ50 / Center back / 0~2 MPa (약 0~290 psi)</td>
-            <td style="padding:9px 12px;text-align:center;"><span style="background:#E6F1FB;color:#0C447C;padding:2px 8px;border-radius:4px;">80%</span></td>
+            <td style="padding:9px 12px;color:#712B13;font-weight:500;">P840</td>
+            <td style="padding:9px 12px;font-family:monospace;color:var(--text-sec);">P842-1-F-5-SM-H-060-4-0</td>
+            <td style="padding:9px 12px;">P842 High+Low / Center back / 패턴 1·3 안전 인터락</td>
           </tr>
           <tr>
-            <td style="padding:9px 12px;color:var(--text-sec);">VMB 저압 Switch</td>
-            <td style="padding:9px 12px;font-family:monospace;color:var(--blue-dark);">P842-1-F-5-SM-I-051-4-0</td>
-            <td style="padding:9px 12px;">P842 High+Low / Center back / 0~2 MPa (약 0~290 psi)</td>
-            <td style="padding:9px 12px;text-align:center;"><span style="background:#E6F1FB;color:#0C447C;padding:2px 8px;border-radius:4px;">80%</span></td>
+            <td style="padding:9px 12px;color:var(--blue-dark);font-weight:500;">UPT863</td>
+            <td style="padding:9px 12px;font-family:monospace;color:var(--text-sec);">UPT863-H-A-1-S-P-XXX-C-1-0</td>
+            <td style="padding:9px 12px;">Straight female / psi 단위 / 4~20mA, 패턴 1·2 PLC 연동</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div style="margin-top:12px;padding:10px 14px;border-radius:7px;background:var(--warn-bg);border:0.5px solid var(--warn);font-size:12px;color:#7A4A00;">위 오더 코드는 데이터시트 range table 기준 가장 근접한 표준 코드 예시입니다. "0~3,000 psi", "0~160 psi"는 실제 운전 압력대를 설명하기 위한 근사 표현이며, 정식 발주 시에는 고객사 요구 사양에 맞춰 정확한 range code로 재확인이 필요합니다.</div>
-  </div>
-
-  <div class="card">
-    <div style="font-size:14px;font-weight:600;margin-bottom:12px;">주요 압력 범위 (재고 주력)</div>
-    <table style="width:100%;border-collapse:collapse;font-size:12px;">
-      <thead><tr style="background:var(--surface2);">
-        <th style="padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;">Range</th>
-        <th style="padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;">용도</th>
-        <th style="padding:8px 12px;text-align:center;border-bottom:1px solid var(--border);font-weight:500;">재고 비중</th>
-      </tr></thead>
-      <tbody>
-        <tr style="border-bottom:1px solid var(--border);background:#FFF8F5;">
-          <td style="padding:8px 12px;font-weight:500;color:var(--red-dark);">0~3,000 psi</td><td style="padding:8px 12px;color:var(--red-dark);">고압 (Gas Cabinet 실린더 직결)</td><td style="padding:8px 12px;text-align:center;color:var(--red-dark);font-weight:500;">20%</td>
-        </tr>
-        <tr style="background:#EFF6FF;">
-          <td style="padding:8px 12px;font-weight:500;color:var(--blue-dark);">0~160 psi</td><td style="padding:8px 12px;color:var(--blue-dark);">저압 (VMB / 공정 공급)</td><td style="padding:8px 12px;text-align:center;color:var(--blue-dark);font-weight:500;">80%</td>
-        </tr>
-      </tbody>
-    </table>
+    <div style="margin-top:12px;padding:10px 14px;border-radius:7px;background:var(--warn-bg);border:0.5px solid var(--warn);font-size:12px;color:#7A4A00;">위 오더 코드는 예시이며 정식 발주 시 고객사 요구 사양 재확인이 필요합니다.</div>
   </div>
 </section>
 
@@ -615,81 +606,91 @@ function showPage(id,el){
 }
 
 const p1data={
-  cab:{c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',t:'Gas Cabinet — Primary/Reserve 자동전환 안전 시스템',r:[
+  cab:{c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',t:'Gas Cabinet — Primary/Reserve 자동전환 실린더 격납',r:[
     ['구조','실린더 2개(Primary+Reserve)를 내부에 격납. Changeover Manifold로 자동 전환'],
-    ['역할','한쪽 실린더 소진 시 다른 쪽으로 자동 전환하여 연속 공급 — 무중단 운전'],
+    ['역할','한쪽 실린더 소진 시 다른 쪽으로 자동 전환하여 무중단 공급'],
     ['안전 기준','SEMI S2 / NFPA 55 / NFPA 318'],
-    ['내부 계기','G1a·G1b(개별) + S1(공통) + Regulator']]},
+    ['내부 계기','G1a·G1b(개별 Gauge) + T1(공통 Transmitter) + S1(공통 Switch)']]},
   cylP:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'Primary 실린더',r:[
     ['역할','현재 사용 중인 주 실린더'],
-    ['G1a','Pigtail에 직결 — Primary 잔량을 개별로 확인'],
-    ['전환 조건','Primary 압력이 일정 수준 이하로 떨어지면 Reserve로 자동 전환']]},
+    ['G1a','Pigtail 직결 — Primary 잔량을 개별로 육안 확인']]},
   cylR:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'Reserve 실린더',r:[
     ['역할','대기 중인 예비 실린더'],
-    ['G1b','Pigtail에 직결 — Reserve 잔량을 개별로 확인'],
-    ['전환 후','Primary가 소진되면 Reserve가 자동으로 메인 공급원이 됨. 이후 Primary 실린더 교체']]},
+    ['G1b','Pigtail 직결 — Reserve 잔량을 개별로 육안 확인'],
+    ['전환 후','Primary 소진 시 Reserve가 자동으로 메인 공급원이 됨']]},
   g1a:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'G1a — P810 Gauge (Primary 실린더 직결)',r:[
-    ['제품','P810 series | Low mount | Pigtail 직결'],
-    ['기능','Primary 실린더 잔량을 바늘로 개별 표시'],
-    ['이유','Primary/Reserve 각각의 교체 시점을 따로 파악해야 하므로 실린더별 개별 설치']]},
+    ['역할','Primary 잔량 개별 표시 — 전원 불필요, 모든 패턴 공통 베이스'],
+    ['이유','Primary/Reserve 각각의 교체 시점을 작업자가 즉시 비교해야 하므로 개별 설치']]},
   g1b:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'G1b — P810 Gauge (Reserve 실린더 직결)',r:[
-    ['제품','P810 series | Low mount | Pigtail 직결'],
-    ['기능','Reserve 실린더 잔량을 바늘로 개별 표시'],
-    ['이유','자동전환 이후 Reserve가 메인이 되므로, 전환 전부터 잔량 확인 필요']]},
+    ['역할','Reserve 잔량 개별 표시'],
+    ['이유','자동전환 이후 Reserve가 메인이 되므로 전환 전부터 확인 필요']]},
   changeover:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'Changeover Manifold',r:[
     ['역할','Primary·Reserve 두 라인을 하나로 합류시키는 자동전환 매니폴드'],
-    ['동작','Primary 압력 저하 감지 시 내부 셔틀밸브가 자동으로 Reserve 라인 개방'],
-    ['S1 설치 이유','이 지점 이후부터는 공급원이 어느 실린더든 상관없이 같은 배관 — Switch는 여기 1개로 충분']]},
-  s1:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'S1 — P840 Switch, Analog Indicator (합류 지점 공통 1개)',r:[
-    ['제품','P843 series (Low alarm) | Low mount | Changeover Manifold 이후 공통 배관'],
-    ['왜 1개만?','실린더별 개별 감시는 Gauge(G1a, G1b)가 담당. Switch는 "공급 라인 전체가 저압인지"만 확인하면 되므로 합류 지점 1곳이면 충분'],
-    ['동작','바늘이 SET 포인터 도달 시 기계 접점 → 전기 신호 출력'],
-    ['자동 차단','단독 불가 — 외부 PLC·릴레이 구성 필요'],
-    ['비용 효과','실린더마다 Switch를 달면 불필요한 중복 비용 발생 — 합류점 1개가 합리적']]},
-  reg:{c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',t:'Regulator — 감압 밸브',r:[
-    ['Inlet','고압 — 합류된 실린더 압력(최대 3,000 psi) 그대로 유입'],
-    ['Outlet','저압 — Set point로 고정된 일정 압력(예: 80 psi) 출력'],
-    ['Set point 범위','20~150 psi 중 GDS 설계에 따라 한 값으로 고정'],
-    ['특징','Inlet 압력이 실린더 잔량에 따라 변해도 Outlet은 거의 일정하게 유지']]},
-  g2:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'G2 — P810 Gauge (VMB 내부 헤더, 재고 80%)',r:[
-    ['위치','VMB 내부 매니폴드 헤더 위 — Center back mount'],
-    ['기능','Regulator Outlet에서 나온 일정한 저압을 연속 표시'],
-    ['범위','0~160 psi'],
-    ['재고 많은 이유','VMB 헤더 G2 + 각 Stick Gauge → 포인트 多']]},
-  s2:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'S2 — P840 Switch, Analog Indicator (VMB 내부 헤더)',r:[
-    ['위치','VMB 내부 헤더 위 — G2 옆 병렬, Center back mount'],
-    ['동작','바늘이 SET 포인터 도달 시 전기 신호 출력'],
-    ['자동 차단','단독 불가 — 외부 제어 시스템 필요'],
-    ['권장 모델','P842 (High+Low): 과압·저압 동시 감시']]},
-  vmb:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'VMB / VMP 내부 구조',r:[
-    ['역할','Gas Cabinet 가스를 복수 Tool에 분배'],
-    ['헤더 계기','G2+S2 — Center back mount'],
-    ['Stick 구성','Isolation Valve → Regulator → Gauge → ESO Valve']]},
+    ['T1·S1 설치 이유','합류 이후부터는 같은 배관이므로, 공급 라인 전체를 보는 T1·S1은 여기 1개씩이면 충분']]},
+  t1:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'T1 — UPT863 Transmitter (Cabinet 고압측, 합류 지점 공통 1개)',r:[
+    ['역할','4~20mA로 PLC에 실시간 압력 전송 — 정밀 모니터링'],
+    ['적용','패턴 1·2 — 정밀 모니터링 필요 구간']]},
+  s1:{c:'#712B13',bg:'#FAECE7',bd:'#D85A30',t:'S1 — P840 Switch (Cabinet 고압측, 합류 지점 공통 1개)',r:[
+    ['역할','설정 압력 도달 시 접점 신호 — PLC 소프트웨어와 무관하게 독립 동작'],
+    ['적용','패턴 1·3 — 안전 critical 또는 구형 설비']]},
+  reg:{c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',t:'Regulator',r:[
+    ['Inlet','고압 — 합류된 실린더 압력(최대 3,000 psi) 유입'],
+    ['Outlet','저압 — Set point 20~150 psi 중 선택 고정']]},
+  vmbvmp:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'VMB / VMP — 분배 설비 (가스 종류로 구성 갈림)',r:[
+    ['공통 역할','Regulator에서 받은 저압 가스를 복수 Process Tool에 분배'],
+    ['VMB(상단)','유해가스 — 밀폐형, 반자동화 — Gauge·Transmitter·Switch 모두 가능'],
+    ['VMP(하단)','비유해가스 — 개방형 — Gauge 위주, Transmitter·Switch 거의 미설치'],
+    ['핵심','같은 분배 설비 카테고리지만 다루는 가스에 따라 계기 구성이 달라짐']]},
+  vmb:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'VMB — 유해가스 분배 (밀폐형)',r:[
+    ['역할','유해가스를 외부 노출 없이 복수 Tool에 분배'],
+    ['자동화','사람 접촉 최소화를 위해 반자동화가 기본'],
+    ['G2+T2+S2','헤더에 안전 critical 구간이면 3종 모두 또는 일부 조합']]},
+  g2:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'G2 — P810 Gauge (VMB 헤더)',r:[['역할','육안 확인용 — VMB에서도 기본 베이스로 항상 설치']]},
+  t2:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'T2 — UPT863 Transmitter (VMB 헤더)',r:[['역할','PLC/HMI 실시간 정밀 모니터링 — 반자동화 핵심']]},
+  s2:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'S2 — P840 Switch (VMB 헤더)',r:[['역할','PLC 소프트웨어와 무관한 독립 하드웨어 안전 인터락']]},
+  vmp:{c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',t:'VMP — 비유해가스 분배 (개방형)',r:[
+    ['역할','Ar, N2 등 노출 무관 가스 분배 — 개방형 구조'],
+    ['구성 경향','Gauge(G2n) 위주로 수동 확인'],
+    ['예외','EHS 트렌드 모니터링 요구나 정밀공정이면 Transmitter도 채택 가능']]},
+  g2n:{c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',t:'G2n — P810 Gauge (VMP 헤더, 주력)',r:[
+    ['역할','VMP에서는 수동 확인의 주력 계기'],
+    ['비교','VMB의 G2와 달리 보조가 아닌 메인 역할']]},
   tool:{c:'#2C2C2A',bg:'#F1EFE8',bd:'#888780',t:'Process Tool',r:[
-    ['역할','VMB 공급 가스로 Wafer 공정'],
-    ['Gauge','P810 0~160 psi 입구 모니터링'],
-    ['Switch','P840 신호 → 외부 시스템 수신 후 조치']]}
+    ['역할','VMB(유해가스)·VMP(비유해가스) 양쪽에서 공급된 가스로 공정에 맞게 Wafer 처리']]},
+  stick:{c:'#0C447C',bg:'#E6F1FB',bd:'#185FA5',t:'Stick — VMB/VMP 단위 가스 라인',r:[
+    ['구조','Isolation Valve → Regulator → G(Gauge) + T(Transmitter) + S(Switch) → ESO Valve'],
+    ['역할','헤더에서 분기된 가스 1개를 Process Tool 1개에 공급하는 단위 모듈'],
+    ['계기 구성','G+T+S 3종 세트가 원칙 — 설치 패턴에 따라 T·S 일부 생략 가능 (02탭 참조)'],
+    ['수량 임팩트','Stick 1개당 최대 3개 계기 — Stick 4개 VMB라면 Stick 12개 + 헤더 3개 = 최대 15개/대']]}
+};
+
+const p2data={
+  pattern1:{c:'#3C3489',bg:'#EEEDFE',bd:'#534AB7',t:'패턴 1 — Gauge + Transmitter + Switch',r:[
+    ['적용 상황','고위험 유해가스(SiH4, Cl2, HCl 등) + 신형/반자동화 fab + 안전 critical 구간 (Gas Cabinet 고압측, VMB 메인 헤더)'],
+    ['Gauge 역할','현장 작업자 육안 확인용 — 전원 없이도 작동'],
+    ['Transmitter 역할','PLC/HMI가 평소 실시간 압력 추세 모니터링'],
+    ['Switch 역할','PLC 소프트웨어와 무관하게 압력 임계치 도달 시 하드웨어적으로 독립 차단 — 최후 안전판'],
+    ['핵심 논리','Transmitter는 똑똑하지만 PLC·소프트웨어 의존, Switch는 단순하지만 확실히 독립 동작. 안전이 가장 중요한 지점은 이중 보장 필요']]},
+  pattern2:{c:'#0C447C',bg:'#EFF6FF',bd:'#185FA5',t:'패턴 2 — Gauge + Transmitter (Switch 없음)',r:[
+    ['적용 상황','신형 fab 일반 모니터링 구간, 정밀 유량 제어가 필요한 공정(가스 위험도 무관), 비유해가스라도 EHS 트렌드 기록이 필요한 라인'],
+    ['Gauge 역할','현장 최소 확인용'],
+    ['Transmitter 역할','정밀 수치 + 트렌드 기록 + PLC 인터락'],
+    ['핵심 논리','이 구간은 정확한 값과 추세를 보는 게 목적 — 독립 하드웨어 안전 인터락까지는 요구되지 않는 일반 프로세스 압력 구간']]},
+  pattern3:{c:'#712B13',bg:'#FFF1EA',bd:'#993C1D',t:'패턴 3 — Gauge + Switch (Transmitter 없음)',r:[
+    ['적용 상황','구형 fab(접점 기반 PLC), 비유해가스(Ar, N2) 일반 라인, 단순 임계값 경보만으로 충분한 구간'],
+    ['Gauge 역할','현장 확인용'],
+    ['Switch 역할','설정 압력 도달 시 접점 신호 — 단순 경보 또는 구형 PLC 입력'],
+    ['핵심 논리','PLC가 연속 수치를 다룰 인프라가 없거나(구형), 정밀 추세 모니터링이 불필요한 단순 구간이라 Transmitter를 들일 이유가 없음']]}
 };
 
 function showInfo(page,key){
-  const d=p1data[key];
+  const data = (page==='p2') ? p2data : p1data;
+  const d = data[key];
+  if(!d) return;
   const rows=d.r.map(([a,b])=>`<tr><td style="font-weight:500;color:${d.c};padding-right:14px;white-space:nowrap;vertical-align:top;padding-bottom:7px;font-size:13px;">${a}</td><td style="font-size:13px;color:#1A1A18;line-height:1.55;padding-bottom:7px;">${b}</td></tr>`).join('');
-  document.getElementById(page+'-info').innerHTML=`<div class="info-panel" style="background:${d.bg};border:1px solid ${d.bd};"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-size:14px;font-weight:600;color:${d.c};">${d.t}</span><button style="background:none;border:none;cursor:pointer;font-size:20px;color:${d.c};padding:0 2px;line-height:1;" onclick="document.getElementById('${page}-info').innerHTML=''">×</button></div><table>${rows}</table></div>`;
+  const targetId = (page==='p2') ? 'p2-info' : (page+'-info');
+  document.getElementById(targetId).innerHTML=`<div class="info-panel" style="background:${d.bg};border:1px solid ${d.bd};"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-size:14px;font-weight:600;color:${d.c};">${d.t}</span><button style="background:none;border:none;cursor:pointer;font-size:20px;color:${d.c};padding:0 2px;line-height:1;" onclick="document.getElementById('${targetId}').innerHTML=''">×</button></div><table>${rows}</table></div>`;
 }
-
-const scenarios=[
-  {c:'#27500A',bg:'#EAF3DE',bd:'#3B6D11',h:'정상 운전 중',body:`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><div style="border-radius:8px;background:#FFF8F5;border:1px solid #D85A30;padding:14px;"><div style="font-size:12px;font-weight:600;color:#712B13;margin-bottom:6px;">G1a/G1b — 개별 확인</div><div style="font-size:12px;color:#993C1D;line-height:1.7;">Primary 2,400 psi, Reserve 3,000 psi.<br>"Primary가 먼저 닳고 있구나."<br><br>두 실린더 잔량을 따로 비교 가능</div></div><div style="border-radius:8px;background:#EFF6FF;border:1px solid #185FA5;padding:14px;"><div style="font-size:12px;font-weight:600;color:#0C447C;margin-bottom:6px;">S1 — 아무 일 없음</div><div style="font-size:12px;color:#185FA5;line-height:1.7;">합류 배관 압력 정상 → 신호 없음<br><br>어느 실린더가 공급 중이든 라인 압력만 확인</div></div></div>`},
-  {c:'#7D1A1A',bg:'#FCEBEB',bd:'#E24B4A',h:'Primary 소진 시',body:`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><div style="border-radius:8px;background:#FFF8F5;border:1px solid #D85A30;padding:14px;"><div style="font-size:12px;font-weight:600;color:#712B13;margin-bottom:6px;">G1a — 저압 표시</div><div style="font-size:12px;color:#993C1D;line-height:1.7;">Primary 바늘이 200 psi까지 하락.<br>"Primary 거의 다 썼다."</div></div><div style="border-radius:8px;background:#FCEBEB;border:1px solid #E24B4A;padding:14px;"><div style="font-size:12px;font-weight:600;color:#7D1A1A;margin-bottom:6px;">Changeover 자동 전환</div><div style="font-size:12px;color:#A32D2D;line-height:1.7;">셔틀밸브가 Reserve로 자동 전환.<br>S1은 합류 배관 압력이 유지되는 한 신호 없음 — 무중단 공급 확인</div></div></div>`},
-  {c:'#7D1A1A',bg:'#FCEBEB',bd:'#E24B4A',h:'P840 Switch만 설치하면?',body:`<div style="display:flex;flex-direction:column;gap:7px;"><div style="border-radius:7px;background:#fff;border:0.5px solid #D9D7CE;padding:10px 12px;font-size:12px;line-height:1.65;"><strong style="color:#A32D2D;">Primary/Reserve 구분 불가</strong> — Switch 1개로는 어느 실린더가 빠지고 있는지 알 수 없음</div><div style="border-radius:7px;background:#fff;border:0.5px solid #D9D7CE;padding:10px 12px;font-size:12px;line-height:1.65;"><strong style="color:#A32D2D;">정확도 부족</strong> — P840 다이얼 ±2% FS, 정밀 모니터링 어려움</div></div>`},
-  {c:'#7D1A1A',bg:'#FCEBEB',bd:'#E24B4A',h:'P810 Gauge만 설치하면?',body:`<div style="display:flex;flex-direction:column;gap:7px;"><div style="border-radius:7px;background:#fff;border:0.5px solid #D9D7CE;padding:10px 12px;font-size:12px;line-height:1.65;"><strong style="color:#A32D2D;">신호 출력 불가</strong> — 합류 배관 이상 시에도 외부 경보·PLC에 전달 불가</div><div style="border-radius:7px;background:#fff;border:0.5px solid #D9D7CE;padding:10px 12px;font-size:12px;line-height:1.65;"><strong style="color:#A32D2D;">무인 운전 취약</strong> — 야간에 두 실린더 모두 소진되어도 알림 없음</div></div>`}
-];
-function setScenario(i,el){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
-  el.classList.add('on');
-  const d=scenarios[i];
-  document.getElementById('scenario-box').innerHTML=`<div style="border-radius:10px;border:1px solid ${d.bd};background:${d.bg};padding:14px 16px;"><div style="font-size:13px;font-weight:600;color:${d.c};margin-bottom:10px;">${d.h}</div>${d.body}</div>`;
-}
-setScenario(0,document.querySelector('.tab-btn.on'));
 </script>
 </body>
 </html>
