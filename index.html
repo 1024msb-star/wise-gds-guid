@@ -63,8 +63,11 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 
 
 .p1-topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:0;}
-.usa-gds-btn{border:1px solid var(--blue);background:var(--blue-bg);color:var(--blue-dark);font-size:14px;font-weight:700;border-radius:999px;padding:8px 15px;cursor:pointer;white-space:nowrap;box-shadow:0 1px 0 rgba(0,0,0,.04);}
+.p1-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center;}
+.usa-gds-btn,.photo-top-btn{border:1px solid var(--blue);background:var(--blue-bg);color:var(--blue-dark);font-size:14px;font-weight:700;border-radius:999px;padding:8px 15px;cursor:pointer;white-space:nowrap;box-shadow:0 1px 0 rgba(0,0,0,.04);}
+.photo-top-btn{border-color:var(--green);background:var(--green-bg);color:var(--green-dark);}
 .usa-gds-btn:hover{background:#DDEEFF;}
+.photo-top-btn:hover{background:#DFF0D2;}
 .usa-box{width:min(1120px,96vw);}
 .usa-body{padding:16px 18px 20px;max-height:76vh;overflow:auto;background:#fff;}
 .usa-intro{font-size:14px;color:var(--text-sec);line-height:1.6;margin-bottom:12px;}
@@ -75,7 +78,7 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 .usa-rank{font-weight:700;text-align:center;width:44px;}
 .usa-cat{white-space:nowrap;color:var(--blue-dark);font-weight:600;}
 .usa-location{white-space:nowrap;color:var(--text-sec);}
-@media(max-width:600px){.p1-topbar{align-items:center}.usa-gds-btn{font-size:13px;padding:7px 12px}.usa-table{font-size:12px;min-width:760px}}
+@media(max-width:600px){.p1-topbar{align-items:flex-start;flex-direction:column}.p1-actions{justify-content:flex-start}.usa-gds-btn,.photo-top-btn{font-size:13px;padding:7px 12px}.usa-table{font-size:12px;min-width:760px}}
 
 @media(max-width:600px){
   .page{padding:18px 14px;}.two-col,.three-col{grid-template-columns:1fr;}
@@ -103,10 +106,14 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
 <section class="page active" id="p1">
   <div class="p1-topbar">
     <div class="section-title">Gas Delivery System</div>
-    <button class="usa-gds-btn" onclick="showUSAGDS()">USA GDS</button>
+    <div class="p1-actions">
+      <button class="usa-gds-btn" onclick="showUSAGDS()">USA GDS</button>
+      <button class="photo-top-btn" onclick="showPhoto('cab')">Gas Cabinet Photo</button>
+      <button class="photo-top-btn" onclick="showPhoto('vmbvmp')">VMB/VMP Photo</button>
+    </div>
   </div>
   <h1 class="page-heading">GDS Pressure Flow — Gas Cabinet → VMB/VMP → Process Tool</h1>
-  <p class="page-desc">Gas flows from dual Primary/Reserve cylinders, is reduced through the regulator, and is then distributed through the VMB/VMP. The diagram below shows several typical instrument configurations for hazardous-gas VMB applications. Gauge, transmitter, and indicator pressure switch combinations vary by gas type, customer EHS requirements, and monitoring philosophy. Click each item or [Installation Photo] for details.</p>
+  <p class="page-desc">Gas flows from dual Primary/Reserve cylinders, is reduced through the regulator, and is then distributed through the VMB/VMP. The diagram below shows several typical instrument configurations for hazardous-gas VMB applications. Gauge, transmitter, and indicator pressure switch combinations vary by gas type, customer EHS requirements, and monitoring philosophy. Click each item for details, or use the top-right buttons to open installation photos and the USA GDS company list.</p>
 
   <div class="card" style="padding:20px 16px 10px 16px;">
     <svg width="100%" viewBox="0 0 960 600" style="display:block;">
@@ -134,8 +141,8 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
         <rect x="38" y="78" width="276" height="374" rx="5" fill="none" stroke="#3B6D11" stroke-width="0.7" stroke-dasharray="4 3"/>
       </g>
       <g class="photo-btn-svg" onclick="showPhoto('cab')">
-        <rect x="236" y="416" width="68" height="20" rx="6" fill="#fff" stroke="#888780" stroke-width="0.8"/>
-        <text x="270" y="430" text-anchor="middle" style="font-size:10.5px;font-weight:600;fill:#2C2C2A;">Photo</text>
+        <rect x="226" y="416" width="88" height="20" rx="6" fill="#fff" stroke="#888780" stroke-width="0.8"/>
+        <text x="270" y="430" text-anchor="middle" style="font-size:10.5px;font-weight:600;fill:#2C2C2A;">[Photo]</text>
       </g>
 
       <!-- Primary Cylinder -->
@@ -239,8 +246,8 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
         <text style="font-size:11px;fill:#185FA5;" x="568" y="68" text-anchor="middle">Valve Manifold Box / Panel</text>
       </g>
       <g class="photo-btn-svg" onclick="showPhoto('vmbvmp')">
-        <rect x="696" y="43" width="64" height="20" rx="6" fill="#fff" stroke="#888780" stroke-width="0.8"/>
-        <text x="728" y="57" text-anchor="middle" style="font-size:10.5px;font-weight:600;fill:#2C2C2A;">Photo</text>
+        <rect x="688" y="43" width="80" height="20" rx="6" fill="#fff" stroke="#888780" stroke-width="0.8"/>
+        <text x="728" y="57" text-anchor="middle" style="font-size:10.5px;font-weight:600;fill:#2C2C2A;">[Photo]</text>
       </g>
 
       <!-- Header Common Instrument Label -->
